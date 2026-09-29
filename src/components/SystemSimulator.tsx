@@ -23,192 +23,33 @@ interface HeaderItem {
   enabled: boolean;
 }
 
-interface PresetEndpoint {
-  id: string;
-  name: string;
-  method: HttpMethod;
-  url: string;
-  description: string;
-  headers: HeaderItem[];
-  body: string;
-  mockResponse: (latency: number) => {
-    status: number;
-    statusText: string;
-    size: string;
-    headers: Record<string, string>;
-    data: any;
-  };
-}
-
 export function SystemSimulator() {
-  const presets: PresetEndpoint[] = [
-    {
-      id: "storevia-orders",
-      name: "Storevia E-Commerce Orders",
-      method: "POST",
-      url: "https://api.janaka.dev/v1/storevia/orders",
-      description: "Laravel Multi-Vendor Order Dispatch & MySQL Transaction Pipeline",
-      headers: [
-        { key: "Content-Type", value: "application/json", enabled: true },
-        { key: "Authorization", value: "Bearer storevia_sec_token_9912", enabled: true },
-        { key: "X-Vendor-ID", value: "vendor_lanka_electronics", enabled: true }
-      ],
-      body: JSON.stringify(
-        {
-          customer_id: "cust_998231",
-          items: [{ sku: "SKU_ESP32_WROOM", quantity: 2, unit_price: 4500 }],
-          shipping_address: { city: "Colombo", postal_code: "00100", country: "Sri Lanka" },
-          payment_method: "CARD_PAYMENT"
-        },
-        null,
-        2
-      ),
-      mockResponse: (lat) => ({
-        status: 200,
-        statusText: "OK (Order Created)",
-        size: "1.4 KB",
-        headers: {
-          "content-type": "application/json; charset=utf-8",
-          "x-powered-by": "Laravel / PHP 8.3",
-          "x-ratelimit-remaining": "59"
-        },
-        data: {
-          order_ref: "ORD_STOREVIA_882910",
-          payment_status: "SUCCESS_VERIFIED",
-          mysql_transaction: "COMMITTED",
-          vendor_notifications: ["NOTIFIED_VENDOR_DISPATCH"],
-          timestamp: new Date().toISOString(),
-          developer: "T.M. Janaka Namal Thennakoon (Backend Dev)"
-        }
-      })
-    },
-    {
-      id: "hexuniverse-listings",
-      name: "HexUniverse Campus Listings",
-      method: "GET",
-      url: "https://api.janaka.dev/v1/hexuniverse/listings?campus=uoc.lk",
-      description: "Next.js & Node.js P2P University Campus Marketplace Filter API",
-      headers: [
-        { key: "Accept", value: "application/json", enabled: true },
-        { key: "X-University-Domain", value: "uoc.lk", enabled: true }
-      ],
-      body: "",
-      mockResponse: (lat) => ({
-        status: 200,
-        statusText: "OK",
-        size: "980 B",
-        headers: {
-          "content-type": "application/json; charset=utf-8",
-          "cache-control": "s-maxage=60, stale-while-revalidate",
-          "x-cache-status": "HIT_REDIS_CACHE"
-        },
-        data: {
-          campus_filter: "University of Colombo - Faculty of Technology",
-          total_listings: 18,
-          featured_items: [
-            {
-              id: "item_01",
-              title: "Software Engineering System Architecture Notes",
-              price_lkr: 2000,
-              seller: "Verified Undergraduate (NIBM / UOC)"
-            }
-          ],
-          cache_hit: true
-        }
-      })
-    },
-    {
-      id: "cardly-analytics",
-      name: "Cardly Financial Analytics",
-      method: "POST",
-      url: "https://api.janaka.dev/v1/cardly/analytics",
-      description: "React Native & Python Flask Credit Card Utilization & Reminders API",
-      headers: [
-        { key: "Content-Type", value: "application/json", enabled: true },
-        { key: "X-App-Version", value: "1.4.0-mobile", enabled: true }
-      ],
-      body: JSON.stringify(
-        {
-          user_id: "user_janaka_cardly",
-          currency: "LKR",
-          period: "THIS_MONTH"
-        },
-        null,
-        2
-      ),
-      mockResponse: (lat) => ({
-        status: 200,
-        statusText: "OK",
-        size: "1.1 KB",
-        headers: {
-          "content-type": "application/json; charset=utf-8",
-          "server": "Python/Flask Gunicorn WSGI"
-        },
-        data: {
-          total_cards_linked: 3,
-          utilization_ratio: "24.5%",
-          due_reminders: [
-            { card_alias: "Visa Gold", due_days_remaining: 5, min_due_lkr: 12500 }
-          ],
-          security: "AES_256_ENCRYPTED_PAYLOAD"
-        }
-      })
-    },
-    {
-      id: "auth-refresh",
-      name: "JWT Auth Token Refresh",
-      method: "PUT",
-      url: "https://api.janaka.dev/v1/auth/refresh-token",
-      description: "OAuth2 / JWT Token Renewal Endpoint",
-      headers: [
-        { key: "Content-Type", value: "application/json", enabled: true },
-        { key: "Authorization", value: "Bearer ref_token_99182371", enabled: true }
-      ],
-      body: JSON.stringify(
-        {
-          grant_type: "refresh_token"
-        },
-        null,
-        2
-      ),
-      mockResponse: (lat) => ({
-        status: 200,
-        statusText: "200 OK (Token Renewed)",
-        size: "650 B",
-        headers: {
-          "content-type": "application/json; charset=utf-8",
-          "x-auth-scheme": "Bearer JWT"
-        },
-        data: {
-          access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-          token_type: "Bearer",
-          expires_in: 3600,
-          issued_at: new Date().toISOString()
-        }
-      })
-    }
-  ];
+  const DEFAULT_URL = "https://api.janaka.dev/v1/hexuniverse/listings?campus=uoc.lk";
 
-  const [selectedPreset, setSelectedPreset] = useState<number>(0);
-  const [method, setMethod] = useState<HttpMethod>(presets[0].method);
-  const [url, setUrl] = useState<string>(presets[0].url);
-  const [headers, setHeaders] = useState<HeaderItem[]>(presets[0].headers);
-  const [body, setBody] = useState<string>(presets[0].body);
+  const [method, setMethod] = useState<HttpMethod>("GET");
+  const [url, setUrl] = useState<string>("");
+  const [headers, setHeaders] = useState<HeaderItem[]>([
+    { key: "Content-Type", value: "application/json", enabled: true },
+    { key: "Accept", value: "application/json", enabled: true }
+  ]);
+  const [body, setBody] = useState<string>(
+    JSON.stringify(
+      {
+        campus: "uoc.lk",
+        filter: "software_engineering",
+        active_user: "undergrad_dev"
+      },
+      null,
+      2
+    )
+  );
+
   const [activeTab, setActiveTab] = useState<"params" | "headers" | "body">("params");
-  
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<any>(null);
   const [copied, setCopied] = useState(false);
 
-  const loadPreset = (idx: number) => {
-    setSelectedPreset(idx);
-    const p = presets[idx];
-    setMethod(p.method);
-    setUrl(p.url);
-    setHeaders([...p.headers]);
-    setBody(p.body);
-    setResponse(null);
-  };
+  const methodsList: HttpMethod[] = ["GET", "POST", "PUT", "DELETE"];
 
   const handleAddHeader = () => {
     setHeaders([...headers, { key: "", value: "", enabled: true }]);
@@ -227,46 +68,105 @@ export function SystemSimulator() {
   const handleSendRequest = async () => {
     setLoading(true);
     setResponse(null);
-    const simulatedLatency = Math.floor(Math.random() * 20) + 14;
+    const startTime = performance.now();
+    const targetUrl = url.trim() || DEFAULT_URL;
 
-    setTimeout(() => {
-      const preset = presets[selectedPreset];
-      let resData;
-      if (preset && preset.url === url && preset.method === method) {
-        resData = preset.mockResponse(simulatedLatency);
-      } else {
-        let parsedBody = {};
-        try {
-          if (body.trim()) parsedBody = JSON.parse(body);
-        } catch {
-          parsedBody = { raw_body: body };
+    const activeHeaders: Record<string, string> = headers
+      .filter((h) => h.enabled && h.key)
+      .reduce((acc, h) => ({ ...acc, [h.key]: h.value }), {});
+
+    let parsedPayload: any = null;
+    if (method !== "GET" && body.trim()) {
+      try {
+        parsedPayload = JSON.parse(body);
+      } catch {
+        parsedPayload = body;
+      }
+    }
+
+    // Try real fetch if endpoint is an actual http(s) URL
+    if (url.trim().startsWith("http://") || url.trim().startsWith("https://")) {
+      try {
+        const fetchOptions: RequestInit = {
+          method: method,
+          headers: activeHeaders
+        };
+
+        if (method !== "GET" && body.trim()) {
+          fetchOptions.body = typeof parsedPayload === "string" ? parsedPayload : JSON.stringify(parsedPayload);
         }
 
-        resData = {
-          status: method === "POST" ? 201 : 200,
-          statusText: method === "POST" ? "Created" : "OK",
-          size: "1.2 KB",
-          headers: {
-            "content-type": "application/json; charset=utf-8",
-            "x-custom-api": "Janaka REST Endpoint Tester"
-          },
-          data: {
-            method: method,
-            url: url,
-            received_headers: headers.filter(h => h.enabled && h.key).reduce((acc, h) => ({ ...acc, [h.key]: h.value }), {}),
-            payload_received: method !== "GET" ? parsedBody : undefined,
-            timestamp: new Date().toISOString(),
-            status: "SUCCESS"
-          }
-        };
-      }
+        const res = await fetch(targetUrl, fetchOptions);
+        const endTime = performance.now();
+        const latencyMs = Math.round(endTime - startTime);
 
+        let data;
+        const contentType = res.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+          data = await res.json();
+        } else {
+          const text = await res.text();
+          try {
+            data = JSON.parse(text);
+          } catch {
+            data = text;
+          }
+        }
+
+        const resHeaders: Record<string, string> = {};
+        res.headers.forEach((value, key) => {
+          resHeaders[key] = value;
+        });
+
+        setResponse({
+          status: res.status,
+          statusText: res.statusText || (res.ok ? "OK" : "Response"),
+          size: `${(JSON.stringify(data).length / 1024).toFixed(1)} KB`,
+          executionTimeMs: latencyMs,
+          headers: resHeaders,
+          data: data
+        });
+        setLoading(false);
+        return;
+      } catch (err: any) {
+        console.warn("Fetch fallback to structured response:", err);
+      }
+    }
+
+    // Fallback response generator for custom / demo endpoints
+    const simulatedLatency = Math.floor(Math.random() * 18) + 12;
+    setTimeout(() => {
       setResponse({
-        ...resData,
-        executionTimeMs: simulatedLatency
+        status: method === "POST" ? 201 : method === "DELETE" ? 204 : 200,
+        statusText: method === "POST" ? "Created" : method === "DELETE" ? "No Content" : "OK",
+        size: "1.2 KB",
+        executionTimeMs: simulatedLatency,
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+          "x-powered-by": "Next.js / Node.js API Gateway",
+          "x-cors-status": "enabled"
+        },
+        data: {
+          request_summary: {
+            method: method,
+            endpoint: targetUrl,
+            headers_sent: activeHeaders,
+            payload: parsedPayload || undefined
+          },
+          response_meta: {
+            timestamp: new Date().toISOString(),
+            environment: "Production (API Gateway)",
+            developer: "T.M. Janaka Namal Thennakoon (Backend Developer)"
+          },
+          result: {
+            status: "SUCCESS",
+            message: `HTTP ${method} execution completed successfully.`,
+            authenticated: true
+          }
+        }
       });
       setLoading(false);
-    }, 550);
+    }, 500);
   };
 
   const handleCopyResponse = () => {
@@ -274,19 +174,6 @@ export function SystemSimulator() {
       navigator.clipboard.writeText(JSON.stringify(response.data, null, 2));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    }
-  };
-
-  const getMethodBadgeColor = (m: HttpMethod) => {
-    switch (m) {
-      case "GET":
-        return "bg-emerald-500/20 text-emerald-400 border-emerald-500/40";
-      case "POST":
-        return "bg-[#FF5500]/20 text-[#FF5500] border-[#FF5500]/40";
-      case "PUT":
-        return "bg-amber-500/20 text-amber-400 border-amber-500/40";
-      case "DELETE":
-        return "bg-rose-500/20 text-rose-400 border-rose-500/40";
     }
   };
 
@@ -312,31 +199,60 @@ export function SystemSimulator() {
             </div>
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
-              Interactive <span className="text-[#FF5500]">Postman API Client</span>
+              Interactive <span className="text-[#FF5500]">API Endpoint Tester</span>
             </h2>
             <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
               Test RESTful endpoints, configure custom HTTP methods, edit request headers & JSON body payloads in real-time.
             </p>
           </div>
 
-          {/* Quick Preset Selector Chips */}
-          <div className="flex flex-wrap items-center gap-2">
-            {presets.map((p, idx) => (
-              <button
-                key={p.id}
-                onClick={() => loadPreset(idx)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all flex items-center gap-2 border ${
-                  selectedPreset === idx
-                    ? "bg-[#FF5500] text-white border-[#FF5500] shadow-md shadow-[#FF5500]/25"
-                    : "bg-white text-neutral-700 hover:text-neutral-900 border-neutral-300 hover:border-neutral-400 shadow-sm"
-                }`}
-              >
-                <span className={`px-1.5 py-0.5 rounded text-[10px] font-extrabold ${getMethodBadgeColor(p.method)}`}>
-                  {p.method}
-                </span>
-                <span>{p.name}</span>
-              </button>
-            ))}
+          {/* HTTP Method Selector Buttons (Selects method without changing URL) */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            {methodsList.map((m) => {
+              const isSelected = method === m;
+              return (
+                <button
+                  key={m}
+                  onClick={() => setMethod(m)}
+                  className={`relative group px-4 py-2 rounded-full text-xs font-mono font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-2 border ${
+                    isSelected
+                      ? m === "GET"
+                        ? "bg-emerald-600 text-white border-emerald-500 shadow-lg shadow-emerald-500/25 ring-2 ring-emerald-500/30"
+                        : m === "POST"
+                        ? "bg-[#FF5500] text-white border-[#FF5500] shadow-lg shadow-[#FF5500]/25 ring-2 ring-[#FF5500]/30"
+                        : m === "PUT"
+                        ? "bg-amber-600 text-white border-amber-500 shadow-lg shadow-amber-500/25 ring-2 ring-amber-500/30"
+                        : "bg-rose-600 text-white border-rose-500 shadow-lg shadow-rose-500/25 ring-2 ring-rose-500/30"
+                      : "bg-white text-neutral-800 border-neutral-200 hover:border-neutral-400 shadow-sm"
+                  }`}
+                >
+                  {/* Animated Ping Indicator */}
+                  <span className="relative flex h-2 w-2">
+                    {isSelected && (
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                    )}
+                    <span
+                      className={`relative inline-flex rounded-full h-2 w-2 ${
+                        isSelected
+                          ? "bg-white"
+                          : m === "GET"
+                          ? "bg-emerald-500"
+                          : m === "POST"
+                          ? "bg-[#FF5500]"
+                          : m === "PUT"
+                          ? "bg-amber-500"
+                          : "bg-rose-500"
+                      }`}
+                    />
+                  </span>
+
+                  {/* Method Name Only */}
+                  <span className="font-extrabold uppercase tracking-wider text-xs">
+                    {m}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -360,13 +276,13 @@ export function SystemSimulator() {
               </select>
             </div>
 
-            {/* URL Input */}
+            {/* URL Input with Default / Placeholder */}
             <div className="flex-1 relative">
               <input
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="Enter request URL (e.g. https://api.janaka.dev/v1/orders)"
+                placeholder="https://api.janaka.dev/v1/hexuniverse/listings?campus=uoc.lk"
                 className="w-full px-4 py-3 rounded-xl bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 font-mono text-xs focus:outline-none focus:border-[#FF5500] transition-colors"
               />
             </div>
@@ -438,24 +354,24 @@ export function SystemSimulator() {
                 {activeTab === "params" && (
                   <div className="space-y-3 text-xs">
                     <div className="bg-neutral-900/80 p-4 rounded-2xl border border-neutral-800 space-y-2">
-                      <div className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider">Active Preset Description</div>
+                      <div className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider">REST API Configuration</div>
                       <p className="text-neutral-200 font-sans leading-relaxed">
-                        {presets[selectedPreset]?.description || "Custom REST API Endpoint execution"}
+                        Configure HTTP request methods, headers, and JSON body parameters to test your backend endpoints.
                       </p>
                     </div>
 
                     <div className="bg-neutral-900/50 p-4 rounded-2xl border border-neutral-800/80 space-y-1.5 text-neutral-400 text-[11px]">
                       <div className="flex justify-between">
-                        <span>Method:</span>
+                        <span>Selected Method:</span>
                         <strong className="text-white font-mono">{method}</strong>
                       </div>
                       <div className="flex justify-between">
-                        <span>Target Host:</span>
-                        <strong className="text-neutral-300 font-mono">api.janaka.dev</strong>
+                        <span>Target Endpoint:</span>
+                        <strong className="text-neutral-300 font-mono truncate max-w-[240px]">{url || DEFAULT_URL}</strong>
                       </div>
                       <div className="flex justify-between">
                         <span>Protocol:</span>
-                        <strong className="text-emerald-400 font-mono">HTTPS / HTTP/2</strong>
+                        <strong className="text-emerald-400 font-mono">HTTPS / RESTful API</strong>
                       </div>
                     </div>
                   </div>
@@ -464,7 +380,7 @@ export function SystemSimulator() {
                 {/* Tab 2: Headers Config Table */}
                 {activeTab === "headers" && (
                   <div className="space-y-3">
-                    <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
+                    <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1 custom-dark-scrollbar">
                       {headers.map((h, idx) => (
                         <div key={idx} className="flex items-center gap-2">
                           <input
@@ -520,7 +436,7 @@ export function SystemSimulator() {
                       value={body}
                       onChange={(e) => setBody(e.target.value)}
                       placeholder='{\n  "key": "value"\n}'
-                      className="w-full p-4 rounded-2xl bg-neutral-900 border border-neutral-800 text-neutral-200 font-mono text-[11px] focus:outline-none focus:border-[#FF5500] transition-colors resize-none leading-relaxed"
+                      className="w-full p-4 rounded-2xl bg-neutral-900 border border-neutral-800 text-neutral-200 font-mono text-[11px] focus:outline-none focus:border-[#FF5500] transition-colors resize-none leading-relaxed custom-dark-scrollbar"
                     />
                   </div>
                 )}
@@ -529,10 +445,10 @@ export function SystemSimulator() {
               {/* Bottom Specs Note */}
               <div className="pt-4 border-t border-neutral-800 flex items-center justify-between text-[11px] text-neutral-400">
                 <span className="flex items-center gap-1.5">
-                  <Server className="w-3.5 h-3.5 text-[#FF5500]" /> Node.js / Laravel API Gateway
+                  <Server className="w-3.5 h-3.5 text-[#FF5500]" /> RESTful API Engine
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Zap className="w-3.5 h-3.5 text-[#FF5500]" /> High Throughput RESTful
+                  <Zap className="w-3.5 h-3.5 text-[#FF5500]" /> Real-Time Response
                 </span>
               </div>
             </div>
@@ -557,7 +473,7 @@ export function SystemSimulator() {
                         {response.executionTimeMs}ms
                       </span>
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-neutral-400 bg-neutral-900 border border-neutral-800">
-                        {response.size || "1.2 KB"}
+                        {response.size}
                       </span>
                     </div>
                   )}
@@ -574,7 +490,7 @@ export function SystemSimulator() {
                       <span>{copied ? "Copied" : "Copy JSON"}</span>
                     </button>
 
-                    <div className="bg-neutral-900 p-4 rounded-2xl border border-neutral-800 overflow-x-auto text-[11px] h-[310px] overflow-y-auto">
+                    <div className="bg-neutral-900 p-4 rounded-2xl border border-neutral-800 overflow-x-auto text-[11px] h-[310px] overflow-y-auto custom-dark-scrollbar">
                       <pre className="text-emerald-400 leading-relaxed font-mono">
                         {JSON.stringify(response.data, null, 2)}
                       </pre>
@@ -588,7 +504,7 @@ export function SystemSimulator() {
                     <div>
                       <p className="text-xs text-neutral-300 font-bold">Ready for API Request Execution</p>
                       <p className="text-[11px] text-neutral-500 mt-1 max-w-xs leading-relaxed">
-                        Select a preset or enter your custom URL, headers, and payload above, then click <strong className="text-white">&quot;Send Request&quot;</strong>.
+                        Enter your endpoint URL, headers, and payload above, then click <strong className="text-white">&quot;Send Request&quot;</strong>.
                       </p>
                     </div>
                   </div>
@@ -601,7 +517,7 @@ export function SystemSimulator() {
                   <Globe className="w-3.5 h-3.5 text-[#FF5500]" /> CORS Enabled
                 </span>
                 <span className="text-neutral-400">
-                  Status: {loading ? "Executing..." : response ? "200 Success" : "Idle"}
+                  Status: {loading ? "Sending..." : response ? "200 Success" : "Idle"}
                 </span>
               </div>
 
@@ -615,4 +531,3 @@ export function SystemSimulator() {
     </section>
   );
 }
-

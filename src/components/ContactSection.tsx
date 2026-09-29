@@ -65,11 +65,11 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
+        <div className="grid lg:grid-cols-12 gap-10 items-stretch">
           
           {/* Left Side Information & Direct Details */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white p-7 rounded-3xl border border-neutral-200/80 shadow-sm space-y-6">
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="bg-white p-8 sm:p-10 rounded-3xl border border-neutral-200/80 shadow-sm flex flex-col justify-around h-full space-y-6">
               
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-[#FFF2EC] text-[#FF5500] flex items-center justify-center shrink-0">
@@ -133,8 +133,8 @@ export function ContactSection() {
           </div>
 
           {/* Right Side Form */}
-          <div className="lg:col-span-7">
-            <div className="bg-white p-8 sm:p-10 rounded-3xl border border-neutral-200/80 shadow-sm">
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="bg-white p-8 sm:p-10 rounded-3xl border border-neutral-200/80 shadow-sm h-full flex flex-col justify-between">
               {submitted ? (
                 <div className="py-12 text-center space-y-4">
                   <div className="w-14 h-14 rounded-full bg-[#FFF2EC] text-[#FF5500] flex items-center justify-center mx-auto">

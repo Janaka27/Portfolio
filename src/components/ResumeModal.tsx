@@ -24,7 +24,6 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
   const handleDownload = () => {
     setDownloaded(true);
     setTimeout(() => setDownloaded(false), 3000);
-    window.print();
   };
 
   return (
@@ -43,13 +42,17 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
+            <a
+              href="/resources/My_CV.pdf"
+              download="Janaka_Namal_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={handleDownload}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#FF5500] text-white text-xs font-bold hover:bg-[#E04B00] transition-all shadow-md shadow-[#FF5500]/20"
             >
               {downloaded ? <Check className="w-4 h-4" /> : <Download className="w-4 h-4" />}
-              <span>{downloaded ? "Saving PDF..." : "Export PDF / Print"}</span>
-            </button>
+              <span>{downloaded ? "Downloading CV..." : "Download CV (PDF)"}</span>
+            </a>
 
             <button
               onClick={onClose}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { ShieldCheck, Activity, TestTube, Gauge, CheckCircle2 } from "lucide-react";
 
 export function EngineeringStandards() {
@@ -48,7 +49,7 @@ export function EngineeringStandards() {
   ];
 
   return (
-    <section className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section id="architecture" className="py-24 bg-[#F7F7F8] relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
         <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
@@ -59,7 +60,13 @@ export function EngineeringStandards() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header matching template `- Standards` */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6"
+        >
           <div className="space-y-3 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="w-6 h-0.5 bg-[#FF5500]" />
@@ -75,15 +82,20 @@ export function EngineeringStandards() {
               Writing clean code is only half the battle. Enterprise software demands security hardening, deep observability, test automation, and measurable SLA adherence.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Pillars Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {pillars.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
                 className="bg-white rounded-3xl p-7 sm:p-8 border border-neutral-200/80 shadow-sm card-hover space-y-5"
               >
                 <div className="flex items-center gap-3">
@@ -101,7 +113,7 @@ export function EngineeringStandards() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             );
           })}
         </div>

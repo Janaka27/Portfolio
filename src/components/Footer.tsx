@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { ArrowUp, ShieldCheck, Mail } from "lucide-react";
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -25,7 +26,13 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-white border-t border-neutral-200 py-12 text-xs text-neutral-600">
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="bg-white border-t border-neutral-200 py-12 text-xs text-neutral-600"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand Logo & Direct Links */}
@@ -92,10 +99,10 @@ export function Footer() {
           <p>© {new Date().getFullYear()} T.M. Janaka Namal Thennakoon. All rights reserved.</p>
           <div className="flex items-center gap-2 text-neutral-500">
             <ShieldCheck className="w-3.5 h-3.5 text-[#FF5500]" />
-            <span>Software Engineering Undergraduate | Full Stack Developer</span>
+            <span>Software Engineering Undergraduate | Full Stack Developer | Backend Developer</span>
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

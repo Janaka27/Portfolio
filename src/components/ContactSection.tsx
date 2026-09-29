@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { Mail, Calendar, CheckCircle2, ArrowUpRight, Building, Clock, ShieldCheck, Send } from "lucide-react";
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -46,7 +47,13 @@ export function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header matching template: `- Contact Us` + `Contact Us Today` / `Grow Your Business` */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6"
+        >
           <div className="space-y-3 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="w-6 h-0.5 bg-[#FF5500]" />
@@ -63,12 +70,18 @@ export function ContactSection() {
               Have a project in mind or interested in collaborating? Feel free to reach out for backend development, full-stack web/mobile builds, or API engineering.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-10 items-stretch">
           
           {/* Left Side Information & Direct Details */}
-          <div className="lg:col-span-5 flex flex-col">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="lg:col-span-5 flex flex-col"
+          >
             <div className="bg-white p-8 sm:p-10 rounded-3xl border border-neutral-200/80 shadow-sm flex flex-col justify-around h-full space-y-6">
               
               <div className="flex items-center gap-4">
@@ -130,10 +143,16 @@ export function ContactSection() {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side Form */}
-          <div className="lg:col-span-7 flex flex-col">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="lg:col-span-7 flex flex-col"
+          >
             <div className="bg-white p-8 sm:p-10 rounded-3xl border border-neutral-200/80 shadow-sm h-full flex flex-col justify-between">
               {submitted ? (
                 <div className="py-12 text-center space-y-4">
@@ -231,7 +250,7 @@ export function ContactSection() {
                 </form>
               )}
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

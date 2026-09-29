@@ -13,6 +13,7 @@ import { TestimonialAndPricingSection } from "@/components/TestimonialAndPricing
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { ResumeModal } from "@/components/ResumeModal";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 
 export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -37,6 +38,9 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Scroll To Top Button */}
+      <ScrollToTopButton />
 
       {/* Resume Modal */}
       <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />

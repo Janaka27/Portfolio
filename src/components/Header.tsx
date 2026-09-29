@@ -10,23 +10,53 @@ interface HeaderProps {
 export function Header({ onOpenResume }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [activeSection, setActiveSection] = useState("overview");
 
   const navLinks = [
     { name: "Overview", href: "#overview" },
     { name: "Services", href: "#services" },
-    { name: "Architecture", href: "#architecture" },
     { name: "Projects", href: "#case-studies" },
+    { name: "Architecture", href: "#architecture" },
     { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
   ];
+
+  useEffect(() => {
+    const sectionIds = navLinks.map((link) => link.href.substring(1));
+    
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      // Check if user is at the bottom of the page -> activate contact
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 80) {
+        setActiveSection("contact");
+        return;
+      }
+
+      const targetY = 250;
+      let matched = false;
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= targetY && rect.bottom > targetY) {
+            setActiveSection(id);
+            matched = true;
+            break;
+          }
+        }
+      }
+
+      if (!matched && window.scrollY < 200) {
+        setActiveSection("overview");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
@@ -51,15 +81,23 @@ export function Header({ onOpenResume }: HeaderProps) {
 
         {/* Navigation Links */}
         <nav className="hidden lg:flex items-center gap-1 bg-white/80 p-1.5 rounded-full border border-neutral-200/80 shadow-sm backdrop-blur-md">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="px-4 py-1.5 text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-full transition-all duration-200"
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.substring(1);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setActiveSection(link.href.substring(1))}
+                className={`px-4 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
+                  isActive
+                    ? "bg-[#FF5500] text-white shadow-md shadow-[#FF5500]/25 font-bold"
+                    : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100"
+                }`}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Right Action buttons */}
@@ -102,16 +140,26 @@ export function Header({ onOpenResume }: HeaderProps) {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white/95 border-b border-neutral-200 backdrop-blur-xl px-4 py-6 space-y-4 shadow-xl">
           <div className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2.5 text-sm font-semibold text-neutral-800 hover:bg-neutral-100 rounded-xl transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => {
+                    setActiveSection(link.href.substring(1));
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors ${
+                    isActive
+                      ? "bg-[#FF5500] text-white font-bold"
+                      : "text-neutral-800 hover:bg-neutral-100"
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </div>
 
           <div className="pt-4 border-t border-neutral-200 flex flex-col gap-3">

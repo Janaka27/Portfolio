@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { Star, CheckCircle2, ArrowUpRight, Quote, Building } from "lucide-react";
 
 export function TestimonialAndPricingSection() {
@@ -66,7 +67,13 @@ export function TestimonialAndPricingSection() {
         {/* Testimonials Block */}
         <div>
           {/* Section Subtitle `- Testimonials` */}
-          <div className="space-y-3 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="space-y-3 mb-12"
+          >
             <div className="flex items-center gap-2">
               <span className="w-6 h-0.5 bg-[#FF5500]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#FF5500]">
@@ -77,13 +84,18 @@ export function TestimonialAndPricingSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
               Testimonials that Lead to <span className="text-[#FF5500]">My Results</span>
             </h2>
-          </div>
+          </motion.div>
 
           {/* Testimonial Cards Grid (Featuring the dark card matching top right of image) */}
           <div className="grid lg:grid-cols-2 gap-8">
             {testimonials.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
                 className="bg-[#1E1E24] text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative flex flex-col justify-between border border-neutral-800 card-hover"
               >
                 <div>
@@ -114,14 +126,20 @@ export function TestimonialAndPricingSection() {
                     <p className="text-xs text-[#FF5500] font-semibold">{item.role}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Pricing / Retainer Cards Block (Matching bottom right of reference image) */}
         <div>
-          <div className="space-y-3 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="space-y-3 mb-12"
+          >
             <div className="flex items-center gap-2">
               <span className="w-6 h-0.5 bg-[#FF5500]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#FF5500]">
@@ -132,12 +150,17 @@ export function TestimonialAndPricingSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
               Flexible <span className="text-[#FF5500]">Retainer Options</span>
             </h2>
-          </div>
+          </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {pricingPlans.map((plan, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
                 className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-sm border transition-all card-hover relative ${
                   plan.isPopular
                     ? "bg-white border-[#FF5500] ring-2 ring-[#FF5500]/20 shadow-xl"
@@ -182,7 +205,7 @@ export function TestimonialAndPricingSection() {
                   <span>Get Started Today</span>
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </a>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

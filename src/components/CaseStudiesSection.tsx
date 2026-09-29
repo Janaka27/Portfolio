@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { 
   Briefcase, 
   ExternalLink, 
@@ -155,7 +156,13 @@ export function CaseStudiesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header matching template: `- Projects` + `My Latest Projects` */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+        >
           <div className="space-y-3 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="w-6 h-0.5 bg-[#FF5500]" />
@@ -171,13 +178,18 @@ export function CaseStudiesSection() {
               Proven enterprise platforms designed, engineered, and shipped for high availability, sub-second latency, and scale.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid lg:grid-cols-2 gap-8">
-          {studies.map((study) => (
-            <div
+          {studies.map((study, index) => (
+            <motion.div
               key={study.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+              whileHover={{ y: -4 }}
               className="bg-white rounded-3xl p-7 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm border border-neutral-200/80 card-hover group"
             >
               <div className="space-y-4">
@@ -252,7 +264,7 @@ export function CaseStudiesSection() {
                   </div>
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

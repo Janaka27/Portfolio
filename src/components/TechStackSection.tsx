@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Code2, 
-  Server, 
-  Cloud, 
-  Database, 
-  ArrowUpRight, 
-  CheckCircle2, 
+import {
+  Code2,
+  Server,
+  Cloud,
+  Database,
+  ArrowUpRight,
+  CheckCircle2,
   Download,
   Layers,
   Cpu,
@@ -15,6 +15,8 @@ import {
   Zap,
   Globe
 } from "lucide-react";
+
+import { motion } from "framer-motion";
 
 export function TechStackSection() {
   const [activeTab, setActiveTab] = useState<"all" | "services" | "architecture" | "cloud">("all");
@@ -72,9 +74,15 @@ export function TechStackSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header matching template: `- Services` + `My Services` + `Download CV` button */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12">
+
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12"
+        >
           <div className="space-y-3 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="w-6 h-0.5 bg-[#FF5500]" />
@@ -82,7 +90,7 @@ export function TechStackSection() {
                 Services & Expertise
               </span>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
               My <span className="text-[#FF5500]">Services</span>
             </h2>
@@ -92,7 +100,9 @@ export function TechStackSection() {
           </div>
 
           {/* Action Button */}
-          <a
+          <motion.a
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
             href="#contact"
             className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-bold text-white bg-[#FF5500] hover:bg-[#E04B00] transition-all shadow-md shadow-[#FF5500]/20 hover:shadow-lg shrink-0 self-start md:self-auto group"
           >
@@ -100,23 +110,26 @@ export function TechStackSection() {
             <div className="w-6 h-6 rounded-full bg-white text-[#FF5500] flex items-center justify-center group-hover:rotate-45 transition-transform">
               <ArrowUpRight className="w-3.5 h-3.5" />
             </div>
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
         {/* Services Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => {
+          {services.map((service, idx) => {
             const Icon = service.icon;
-            
+
             if (service.isFeatured) {
-              {/* Highlighted Dark Active Card (Matching the black featured card in image) */}
               return (
-                <div
+                <motion.div
                   key={service.id}
-                  className="bg-[#1E1E24] text-white p-7 rounded-3xl shadow-2xl flex flex-col justify-between relative group card-hover border border-neutral-800"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
+                  whileHover={{ y: -6 }}
+                  className="bg-[#1E1E24] text-white p-7 rounded-3xl shadow-2xl flex flex-col justify-between relative group border border-neutral-800 transition-all duration-300"
                 >
                   <div>
-                    {/* Top row: Icon + Arrow Pill */}
                     <div className="flex items-center justify-between pb-6">
                       <div className="w-12 h-12 rounded-2xl bg-neutral-800 border border-neutral-700 flex items-center justify-center text-[#FF5500]">
                         <Icon className="w-6 h-6" />
@@ -152,18 +165,21 @@ export function TechStackSection() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             }
 
-            {/* Standard Light Cards */}
             return (
-              <div
+              <motion.div
                 key={service.id}
-                className="bg-white text-neutral-900 p-7 rounded-3xl shadow-sm border border-neutral-200/80 flex flex-col justify-between relative group card-hover"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -6 }}
+                className="bg-white text-neutral-900 p-7 rounded-3xl shadow-sm border border-neutral-200/80 flex flex-col justify-between relative group transition-all duration-300"
               >
                 <div>
-                  {/* Top row: Icon + Top-Right Arrow Badge */}
                   <div className="flex items-center justify-between pb-6">
                     <div className="w-12 h-12 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-800 group-hover:bg-[#FF5500] group-hover:text-white transition-colors">
                       <Icon className="w-6 h-6" />
@@ -199,7 +215,7 @@ export function TechStackSection() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

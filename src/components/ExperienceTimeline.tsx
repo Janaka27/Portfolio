@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { Building2, Calendar, MapPin, Award, CheckCircle2, GraduationCap } from "lucide-react";
 
 export function ExperienceTimeline() {
@@ -103,7 +104,13 @@ export function ExperienceTimeline() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6"
+        >
           <div className="space-y-3 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="w-6 h-0.5 bg-[#FF5500]" />
@@ -119,20 +126,31 @@ export function ExperienceTimeline() {
               Academic background in Software Engineering and ICT Honours paired with hands-on industry experience at HexCode Pvt Ltd.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Experience Cards List */}
         <div className="max-w-5xl mx-auto space-y-8">
           
           {/* Work Experience Subhead */}
-          <div className="text-xs font-extrabold uppercase tracking-widest text-[#FF5500] mb-4 flex items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, x: -15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="text-xs font-extrabold uppercase tracking-widest text-[#FF5500] mb-4 flex items-center gap-2"
+          >
             <Building2 className="w-4 h-4" />
             <span>Work Experience</span>
-          </div>
+          </motion.div>
 
           {experiences.map((exp, idx) => (
-            <div
+            <motion.div
               key={idx}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+              whileHover={{ y: -3 }}
               className="bg-white rounded-3xl p-7 sm:p-8 shadow-sm border border-neutral-200/80 card-hover space-y-4"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-100">
@@ -172,19 +190,30 @@ export function ExperienceTimeline() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
 
           {/* Education Subhead */}
-          <div className="text-xs font-extrabold uppercase tracking-widest text-[#FF5500] pt-6 mb-4 flex items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, x: -15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="text-xs font-extrabold uppercase tracking-widest text-[#FF5500] pt-6 mb-4 flex items-center gap-2"
+          >
             <GraduationCap className="w-4 h-4" />
             <span>Education</span>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-4">
             {education.map((edu, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: idx * 0.08, ease: "easeOut" }}
+                whileHover={{ y: -3 }}
                 className="bg-white rounded-3xl p-6 shadow-sm border border-neutral-200/80 card-hover flex flex-col justify-between space-y-3"
               >
                 <div>
@@ -199,20 +228,31 @@ export function ExperienceTimeline() {
                 <div className="text-xs text-neutral-500 font-medium pt-2 border-t border-neutral-100">
                   {edu.honors}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Certifications Subhead */}
-          <div className="text-xs font-extrabold uppercase tracking-widest text-[#FF5500] pt-6 mb-4 flex items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, x: -15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="text-xs font-extrabold uppercase tracking-widest text-[#FF5500] pt-6 mb-4 flex items-center gap-2"
+          >
             <Award className="w-4 h-4" />
             <span>Certifications & Workshops</span>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {certifications.map((cert, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.4, delay: idx * 0.06, ease: "easeOut" }}
+                whileHover={{ y: -3 }}
                 className="bg-white rounded-2xl p-5 shadow-sm border border-neutral-200/80 card-hover flex flex-col justify-between space-y-2"
               >
                 <div>
@@ -224,7 +264,7 @@ export function ExperienceTimeline() {
                 <p className="text-[11px] text-neutral-500 font-medium pt-2 border-t border-neutral-100">
                   {cert.issuer}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
 

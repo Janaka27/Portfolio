@@ -14,6 +14,7 @@ import {
   Terminal,
   X,
   Check,
+  CheckCircle2,
   Copy,
   ArrowUpRight,
   Layers,
@@ -30,10 +31,12 @@ interface CaseStudy {
   subtitle: string;
   category: string;
   badge: string;
+  status?: string;
   metrics: { label: string; value: string }[];
   problem: string;
   architecture: string;
   solution: string;
+  keyFeatures?: string[];
   techStack: string[];
   jsonPayload: object;
   images?: string[];
@@ -54,7 +57,6 @@ export function CaseStudiesSection() {
     const handleScroll = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        // If bottom of section scrolls past viewport top
         if (rect.bottom < 100) {
           setShowAll(false);
         }
@@ -68,20 +70,29 @@ export function CaseStudiesSection() {
   const studies: CaseStudy[] = [
     {
       id: "storevia",
-      title: "Storevia Multi-Vendor E-Commerce",
-      subtitle: "Scalable E-Commerce Marketplace with Vendor Dashboards & Payment Gateway",
-      category: "E-Commerce & Web Platform",
+      title: "Storevia",
+      subtitle: "Multi-Vendor E-Commerce Platform",
+      category: "Multi-Vendor E-Commerce Platform",
       badge: "Multi-Vendor Engine",
       metrics: [
-        { label: "Vendor Management", value: "Multi-Tenant" },
-        { label: "API Response", value: "< 45 ms" },
-        { label: "Database Security", value: "Role RBAC" },
-        { label: "Order Pipeline", value: "Automated" },
+        { label: "Architecture", value: "Modular Monolith" },
+        { label: "Database", value: "Multi-DB Sync" },
+        { label: "Auth & Push", value: "Firebase" },
+        { label: "Order Engine", value: "Real-Time Tracking" },
       ],
-      problem: "Traditional single-vendor e-commerce solutions lacked dynamic multi-merchant product catalogs, vendor-level inventory synchronization, and localized checkout processing.",
-      architecture: "Full-stack e-commerce architecture utilizing Laravel REST APIs, MySQL relational database design, Next.js / Blade dynamic UI components, and secure payment processing.",
-      solution: "Engineered a robust multi-vendor marketplace engine featuring isolated merchant portals, automated order splitting, real-time inventory tracking, and responsive customer checkout.",
-      techStack: ["Laravel", "PHP", "Next.js", "React.js", "MySQL", "Tailwind CSS", "REST API"],
+      problem: "Managing multiple sellers, stores, products, customers, and orders in a single e-commerce platform can become complex and difficult to scale.",
+      architecture: "Built a modular monolith backend with separate database connections for major business modules such as users, products, stores, and orders. The architecture separates business responsibilities while keeping the system manageable and scalable.",
+      solution: "Developed a multi-vendor e-commerce platform where sellers can manage their stores and products while customers can browse products, manage carts, place orders, and track purchases.",
+      keyFeatures: [
+        "Multi-vendor store management",
+        "Product and inventory management",
+        "Customer authentication",
+        "Cart and order management",
+        "Voucher and discount management",
+        "Real-time order status updates",
+        "Firebase authentication and notifications"
+      ],
+      techStack: ["Laravel", "PHP", "Next.js", "React.js", "MySQL", "Firebase", "Tailwind CSS", "REST API"],
       images: [
         "/resources/Project Images/storevia/Screenshot 2026-09-24 230042.png",
         "/resources/Project Images/storevia/Screenshot 2026-09-26 090733.png",
@@ -109,6 +120,98 @@ export function CaseStudiesSection() {
       }
     },
     {
+      id: "ai-code-reviewer",
+      title: "CodeBrain AI Code Reviewer",
+      subtitle: "AI-Powered Developer Tool & Code Quality Analyzer",
+      category: "AI-Powered Developer Tool",
+      badge: "AI Automation Engine",
+      metrics: [
+        { label: "AI Analysis", value: "Multi-Language" },
+        { label: "Security Audit", value: "Vulnerability Check" },
+        { label: "Code Feedback", value: "Structured AST" },
+        { label: "Review Speed", value: "Automated Instant" },
+      ],
+      problem: "Manual code reviews can be time-consuming and may make it difficult for developers to quickly identify bugs, security vulnerabilities, code quality issues, and improvement opportunities.",
+      architecture: "Built an AI-powered code analysis system that processes submitted source code and uses AI models to analyze the code. The generated results are organized into structured feedback that developers can use to improve their code.",
+      solution: "Developed an AI code reviewer that automatically analyzes source code and provides feedback about bugs, security issues, code quality, best practices, and possible improvements.",
+      keyFeatures: [
+        "AI-powered code analysis",
+        "Bug detection",
+        "Security vulnerability identification",
+        "Code quality analysis",
+        "Best-practice suggestions",
+        "Detailed AI-generated feedback",
+        "Multi-language code analysis"
+      ],
+      techStack: ["Next.js", "TypeScript", "Node.js", "Gemini API", "Tailwind CSS", "REST API"],
+      images: [
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105819.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105834.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105848.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105902.png",
+      ],
+      jsonPayload: {
+        project_id: "prj_ai_code_reviewer_v2",
+        analysis_engine: "GEMINI_AI_AST_PARSER",
+        telemetry: {
+          files_scanned: 142,
+          lines_analyzed: 28450,
+          code_quality_score: "A+",
+          security_vulnerabilities: 0
+        },
+        execution_env: "Node.js v20 / Next.js SSR"
+      }
+    },
+    {
+      id: "cardly",
+      title: "Cardly",
+      subtitle: "Credit Card Management Mobile App",
+      category: "Credit Card Management Mobile App",
+      badge: "Privacy-Focused Mobile",
+      status: "Currently under development",
+      metrics: [
+        { label: "Platform", value: "iOS & Android" },
+        { label: "Data Storage", value: "Local On-Device" },
+        { label: "Card Security", value: "No Sensitive Storage" },
+        { label: "Reminders", value: "Payment & Installments" },
+      ],
+      problem: "Managing multiple credit cards, tracking spending, monitoring available balances, and remembering payment or installment information can be difficult when financial information is scattered across different places.",
+      architecture: "Built a privacy-focused mobile architecture where non-sensitive card information and spending records are managed locally on the device. Authentication and selected application services are handled separately, while sensitive card numbers are intentionally not stored.",
+      solution: "Developed a mobile application that allows users to manage multiple credit cards, record purchases, monitor available balances, and keep track of payment and installment reminders.",
+      keyFeatures: [
+        "Multiple credit card management",
+        "Custom card nicknames",
+        "Purchase tracking",
+        "Available balance tracking",
+        "Payment reminders",
+        "Installment tracking",
+        "Local data storage",
+        "Privacy-focused data handling"
+      ],
+      techStack: ["React Native", "TypeScript", "Node.js", "Python", "Local Storage", "REST API"],
+      images: [
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105819.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105848.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105902.png",
+      ],
+      jsonPayload: {
+        card_app_id: "cardly_app_v1",
+        security: {
+          storage: "LOCAL_DEVICE_ENCRYPTED",
+          sensitive_card_numbers_stored: false,
+          biometric_auth: "ENABLED"
+        },
+        analytics: {
+          active_card_reminders: 4,
+          installment_tracking: "ENABLED"
+        }
+      }
+    },
+    {
       id: "hexuniverse",
       title: "HexUniverse P2P Campus Marketplace",
       subtitle: "University Peer-to-Peer Trading Platform for Sri Lankan Students",
@@ -123,6 +226,13 @@ export function CaseStudiesSection() {
       problem: "University students in Sri Lanka needed a secure, closed-loop community marketplace to buy, sell, and exchange academic textbooks, hardware gear, and student essentials.",
       architecture: "Decoupled web platform powered by React.js & Next.js frontend, Node.js / Laravel RESTful backend, PostgreSQL database, and real-time item listing filter engines.",
       solution: "Developed a campus-centric P2P marketplace featuring verified university email sign-ups, category-based search filters, student profile reviews, and direct buyer-seller messaging.",
+      keyFeatures: [
+        "Campus email student verification",
+        "Category-based academic textbook & gear search",
+        "Direct buyer-seller student messaging",
+        "Student seller trust & reputation ratings",
+        "Real-time item filtering"
+      ],
       techStack: ["Next.js", "React.js", "Node.js", "PostgreSQL", "Tailwind CSS", "REST API"],
       images: [
         "/resources/Project Images/Hexuniverse/Screenshot 2026-09-30 103900.png",
@@ -146,134 +256,6 @@ export function CaseStudiesSection() {
           category: "Academic Books & Electronics",
           condition: "LIKE_NEW"
         }
-      }
-    },
-    {
-      id: "codebrain",
-      title: "CodeBrain Developer Intelligence Suite",
-      subtitle: "Automated Code Analysis, Project Telemetry & Architecture Spec Platform",
-      category: "DevTools & AI Automation",
-      badge: "Developer Engine",
-      metrics: [
-        { label: "Code Parsing", value: "< 15 ms" },
-        { label: "Analysis Engine", value: "AST Based" },
-        { label: "Telemetry", value: "Real-time" },
-        { label: "Automation", value: "CI/CD Pipeline" },
-      ],
-      problem: "Software developer teams needed a unified intelligence workspace to analyze codebase architecture, inspect dynamic project specs, and track real-time telemetry.",
-      architecture: "High-performance developer platform engineered with Next.js, React, Node.js REST services, code syntax inspection engines, and interactive visual dashboards.",
-      solution: "Developed CodeBrain—a powerful workspace providing deep architectural analysis, interactive project spec inspection, and real-time developer productivity insights.",
-      techStack: ["Next.js", "TypeScript", "Node.js", "Tailwind CSS", "REST API", "Docker"],
-      images: [
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105819.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105834.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105848.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105902.png",
-      ],
-      jsonPayload: {
-        project_id: "prj_codebrain_v2",
-        analysis_engine: "AST_PARSER_V3",
-        telemetry: {
-          files_scanned: 142,
-          lines_analyzed: 28450,
-          code_quality_score: "A+",
-          security_vulnerabilities: 0
-        },
-        execution_env: "Node.js v20 / Next.js SSR"
-      }
-    },
-    {
-      id: "cardly",
-      title: "Cardly Credit Card Management App",
-      subtitle: "Mobile App for Card Tracking, Expense Analytics & Payment Reminders",
-      category: "FinTech & Mobile",
-      badge: "Cross-Platform Mobile",
-      metrics: [
-        { label: "Platform", value: "iOS & Android" },
-        { label: "Data Security", value: "Encrypted Storage" },
-        { label: "UI Response", value: "60 FPS Native" },
-        { label: "Sync Latency", value: "< 30 ms" },
-      ],
-      problem: "Users managing multiple credit cards struggled to keep track of payment due dates, interest free grace periods, and spending breakdown across different bank accounts.",
-      architecture: "Cross-platform mobile app built with React Native, state management, secure device storage, and RESTful Python Flask / Node backend microservices.",
-      solution: "Created an intuitive mobile credit card management experience with automated statement due alerts, graphical category expense breakdowns, and encrypted local card metadata.",
-      techStack: ["React Native", "TypeScript", "Python (Flask)", "PostgreSQL", "Docker", "REST API"],
-      images: [
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105819.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105848.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105902.png",
-      ],
-      jsonPayload: {
-        card_id: "card_visa_platinum_9012",
-        card_holder: "Janaka Namal",
-        analytics: {
-          total_credit_limit_lkr: 500000,
-          current_utilization: "24.5%",
-          next_due_date: "2026-10-15",
-          interest_saved_lkr: 14500
-        },
-        security: {
-          biometric_auth_enabled: true,
-          tokenized_storage: "AES_256_SECURE_STORAGE"
-        }
-      }
-    },
-    {
-      id: "devpulse",
-      title: "DevPulse Microservice Health Monitor",
-      subtitle: "Distributed API Monitoring & Infrastructure Telemetry Engine",
-      category: "Cloud Infrastructure & Monitoring",
-      badge: "System Telemetry",
-      metrics: [
-        { label: "Uptime SLA", value: "99.99%" },
-        { label: "Health Poll", value: "5 sec interval" },
-        { label: "Alert Dispatch", value: "< 100 ms" },
-        { label: "Nodes Tracked", value: "50+ Microservices" },
-      ],
-      problem: "Distributed microservice architectures required continuous ping monitoring, anomaly detection, and automated alerting for database latency spikes.",
-      architecture: "Decoupled health checking agent written in Python & Go, reporting back to Next.js dashboard UI via WebSockets and REST API endpoints.",
-      solution: "Engineered DevPulse—an automated microservice health suite providing instant failover alerts, dynamic status badges, and synthetic uptime tracking.",
-      techStack: ["Go", "Python", "Next.js", "Docker", "Redis", "REST API"],
-      images: [
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
-        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png"
-      ],
-      jsonPayload: {
-        node_cluster: "cluster_ap_south_colombo",
-        active_monitors: 52,
-        system_load: "0.14",
-        alert_channel: "SLACK_WEBHOOK_READY"
-      }
-    },
-    {
-      id: "taskflow",
-      title: "TaskFlow Enterprise Kanban & Sprint Suite",
-      subtitle: "Real-time Agile Workflow Engine with Role-Based Access Control",
-      category: "SaaS & Productivity",
-      badge: "Agile Workflow",
-      metrics: [
-        { label: "Realtime Sync", value: "WebSockets" },
-        { label: "RBAC Roles", value: "Admin / Dev / Lead" },
-        { label: "Sprint Board", value: "Drag & Drop" },
-        { label: "Latency", value: "< 20 ms" },
-      ],
-      problem: "Project teams needed a ultra-fast, responsive task management tool with instant team updates, ticket drag-and-drop, and granular permission controls.",
-      architecture: "React / Next.js frontend integrated with Node.js WebSocket gateway and PostgreSQL relational data schema.",
-      solution: "Delivered TaskFlow—a modern sprint management tool supporting real-time board updates, automated notification triggers, and custom workflow states.",
-      techStack: ["React", "Next.js", "Node.js", "PostgreSQL", "Tailwind CSS"],
-      images: [
-        "/resources/Project Images/storevia/Screenshot 2026-09-24 230042.png",
-        "/resources/Project Images/storevia/Screenshot 2026-09-26 090733.png"
-      ],
-      jsonPayload: {
-        board_id: "sprint_board_q4_2026",
-        active_sprint: "Sprint 14",
-        velocity: "42 story points",
-        db_transaction: "ISOLATION_READ_COMMITTED"
       }
     }
   ];
@@ -322,7 +304,7 @@ export function CaseStudiesSection() {
           </div>
         </motion.div>
 
-        {/* Projects Grid (Responsive 2 columns, reduced width) */}
+        {/* Projects Grid (Responsive 2 columns) */}
         <div className="grid lg:grid-cols-2 gap-7">
           {visibleStudies.map((study, index) => (
             <motion.div
@@ -363,13 +345,21 @@ export function CaseStudiesSection() {
                 )}
 
                 {/* Category & Badge */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
                     {study.category}
                   </span>
-                  <span className="text-xs font-mono font-bold text-[#FF5500] bg-[#FFF2EC] px-3 py-1 rounded-full border border-[#FF5500]/20">
-                    {study.badge}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {study.status && (
+                      <span className="text-[10px] font-mono font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                        Under Dev
+                      </span>
+                    )}
+                    <span className="text-xs font-mono font-bold text-[#FF5500] bg-[#FFF2EC] px-3 py-1 rounded-full border border-[#FF5500]/20">
+                      {study.badge}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Title */}
@@ -395,7 +385,7 @@ export function CaseStudiesSection() {
                 {/* Description */}
                 <div className="space-y-2 text-xs text-neutral-600 leading-relaxed font-normal">
                   <p>
-                    <strong className="text-neutral-900 font-semibold">Challenge: </strong>
+                    <strong className="text-neutral-900 font-semibold">Problem: </strong>
                     {study.problem}
                   </p>
                   <p>
@@ -440,7 +430,7 @@ export function CaseStudiesSection() {
           ))}
         </div>
 
-        {/* Show More / Show Less Toggle Button */}
+        {/* Show More / Show Less Toggle Button (if more than 4) */}
         {studies.length > 4 && (
           <div className="mt-12 text-center flex justify-center">
             <button
@@ -466,9 +456,17 @@ export function CaseStudiesSection() {
             {/* Modal Header */}
             <div className="bg-[#1E1E24] text-white p-6 border-b border-neutral-800 flex items-center justify-between">
               <div>
-                <span className="px-3 py-1 text-[10px] font-mono font-bold bg-[#FF5500] text-white rounded-full">
-                  {selectedStudy.category}
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="px-3 py-1 text-[10px] font-mono font-bold bg-[#FF5500] text-white rounded-full">
+                    {selectedStudy.category}
+                  </span>
+                  {selectedStudy.status && (
+                    <span className="px-3 py-1 text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                      {selectedStudy.status}
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-xl sm:text-2xl font-black text-white mt-2">{selectedStudy.title}</h3>
               </div>
               <button
@@ -573,7 +571,7 @@ export function CaseStudiesSection() {
                 </div>
               )}
 
-              {/* Detailed Breakdown */}
+              {/* Problem Statement */}
               <div className="space-y-3">
                 <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono">
                   Problem Statement
@@ -583,6 +581,7 @@ export function CaseStudiesSection() {
                 </p>
               </div>
 
+              {/* Architectural Solution & Strategy */}
               <div className="space-y-3">
                 <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono">
                   Architectural Solution & Strategy
@@ -591,6 +590,34 @@ export function CaseStudiesSection() {
                   {selectedStudy.architecture}
                 </p>
               </div>
+
+              {/* Solution Overview */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono">
+                  Solution Overview
+                </h4>
+                <p className="text-xs text-neutral-600 leading-relaxed bg-neutral-50 p-4 rounded-2xl border border-neutral-200">
+                  {selectedStudy.solution}
+                </p>
+              </div>
+
+              {/* Key Features & Capabilities */}
+              {selectedStudy.keyFeatures && selectedStudy.keyFeatures.length > 0 && (
+                <div className="space-y-3">
+                  <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                    <Zap className="w-4 h-4 text-[#FF5500]" />
+                    Key Features & System Capabilities
+                  </h4>
+                  <div className="grid sm:grid-cols-2 gap-2.5 bg-neutral-50 p-4 rounded-2xl border border-neutral-200">
+                    {selectedStudy.keyFeatures.map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs text-neutral-700 bg-white p-3 rounded-xl border border-neutral-200/80 shadow-2xs">
+                        <CheckCircle2 className="w-4 h-4 text-[#FF5500] shrink-0 mt-0.5" />
+                        <span className="font-medium leading-snug">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* JSON API Response Payload Simulator */}
               <div className="space-y-3">

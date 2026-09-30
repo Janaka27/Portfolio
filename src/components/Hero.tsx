@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { 
-  ArrowUpRight, 
-  Download, 
+import {
+  ArrowUpRight,
+  Download,
   Star,
   GraduationCap
 } from "lucide-react";
@@ -26,7 +26,7 @@ export function Hero({ onOpenResume }: HeroProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* Left Column: Hero Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -106,8 +106,8 @@ export function Hero({ onOpenResume }: HeroProps) {
                   <div className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wide">NIBM & UOC</div>
                 </div>
                 <div>
-                  <div className="text-lg font-black text-neutral-900">5+</div>
-                  <div className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wide">Certifications</div>
+                  <div className="text-lg font-black text-neutral-900">4yrs+</div>
+                  <div className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wide">Experience</div>
                 </div>
               </div>
             </div>

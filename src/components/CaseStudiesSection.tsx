@@ -1,22 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { 
-  Briefcase, 
-  ExternalLink, 
-  ChevronRight, 
-  ShieldCheck, 
-  TrendingUp, 
-  Terminal, 
-  X, 
-  Check, 
+import {
+  Briefcase,
+  ExternalLink,
+  ChevronRight,
+  ChevronLeft,
+  ChevronDown,
+  ChevronUp,
+  ShieldCheck,
+  TrendingUp,
+  Terminal,
+  X,
+  Check,
   Copy,
   ArrowUpRight,
   Layers,
   Code2,
   Server,
-  Zap
+  Zap,
+  Image as ImageIcon,
+  Maximize2
 } from "lucide-react";
 
 interface CaseStudy {
@@ -31,11 +36,34 @@ interface CaseStudy {
   solution: string;
   techStack: string[];
   jsonPayload: object;
+  images?: string[];
 }
 
 export function CaseStudiesSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [selectedStudy, setSelectedStudy] = useState<CaseStudy | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
+  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const [copiedPayload, setCopiedPayload] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+  // Automatically collapse expanded projects when user scrolls past below the section
+  useEffect(() => {
+    if (!showAll) return;
+
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        // If bottom of section scrolls past viewport top
+        if (rect.bottom < 100) {
+          setShowAll(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [showAll]);
 
   const studies: CaseStudy[] = [
     {
@@ -54,6 +82,13 @@ export function CaseStudiesSection() {
       architecture: "Full-stack e-commerce architecture utilizing Laravel REST APIs, MySQL relational database design, Next.js / Blade dynamic UI components, and secure payment processing.",
       solution: "Engineered a robust multi-vendor marketplace engine featuring isolated merchant portals, automated order splitting, real-time inventory tracking, and responsive customer checkout.",
       techStack: ["Laravel", "PHP", "Next.js", "React.js", "MySQL", "Tailwind CSS", "REST API"],
+      images: [
+        "/resources/Project Images/storevia/Screenshot 2026-09-24 230042.png",
+        "/resources/Project Images/storevia/Screenshot 2026-09-26 090733.png",
+        "/resources/Project Images/storevia/Screenshot 2026-09-26 092254.png",
+        "/resources/Project Images/storevia/Screenshot 2026-09-26 092507.png",
+        "/resources/Project Images/storevia/Screenshot 2026-09-26 092542.png",
+      ],
       jsonPayload: {
         storevia_order_id: "ord_storevia_998124",
         status: "PROCESSING_VENDOR_DISPATCH",
@@ -80,7 +115,7 @@ export function CaseStudiesSection() {
       category: "EdTech & Community P2P",
       badge: "Student P2P Network",
       metrics: [
-        { label: "Target Audience", value: "UOC & NIBM" },
+        { label: "Target Audience", value: "University Students" },
         { label: "Verification", value: "University Email" },
         { label: "Search Latency", value: "< 25 ms" },
         { label: "Trade Safety", value: "Verified Profiles" },
@@ -89,6 +124,14 @@ export function CaseStudiesSection() {
       architecture: "Decoupled web platform powered by React.js & Next.js frontend, Node.js / Laravel RESTful backend, PostgreSQL database, and real-time item listing filter engines.",
       solution: "Developed a campus-centric P2P marketplace featuring verified university email sign-ups, category-based search filters, student profile reviews, and direct buyer-seller messaging.",
       techStack: ["Next.js", "React.js", "Node.js", "PostgreSQL", "Tailwind CSS", "REST API"],
+      images: [
+        "/resources/Project Images/Hexuniverse/Screenshot 2026-09-30 103900.png",
+        "/resources/Project Images/Hexuniverse/Screenshot 2026-09-30 103922.png",
+        "/resources/Project Images/Hexuniverse/Screenshot 2026-09-30 103945.png",
+        "/resources/Project Images/Hexuniverse/Screenshot 2026-09-30 104003.png",
+        "/resources/Project Images/Hexuniverse/Screenshot 2026-09-30 104021.png",
+        "/resources/Project Images/Hexuniverse/Screenshot 2026-09-30 104036.png",
+      ],
       jsonPayload: {
         listing_id: "hex_p2p_item_77281",
         campus: "University of Colombo - Faculty of Technology",
@@ -103,6 +146,42 @@ export function CaseStudiesSection() {
           category: "Academic Books & Electronics",
           condition: "LIKE_NEW"
         }
+      }
+    },
+    {
+      id: "codebrain",
+      title: "CodeBrain Developer Intelligence Suite",
+      subtitle: "Automated Code Analysis, Project Telemetry & Architecture Spec Platform",
+      category: "DevTools & AI Automation",
+      badge: "Developer Engine",
+      metrics: [
+        { label: "Code Parsing", value: "< 15 ms" },
+        { label: "Analysis Engine", value: "AST Based" },
+        { label: "Telemetry", value: "Real-time" },
+        { label: "Automation", value: "CI/CD Pipeline" },
+      ],
+      problem: "Software developer teams needed a unified intelligence workspace to analyze codebase architecture, inspect dynamic project specs, and track real-time telemetry.",
+      architecture: "High-performance developer platform engineered with Next.js, React, Node.js REST services, code syntax inspection engines, and interactive visual dashboards.",
+      solution: "Developed CodeBrain—a powerful workspace providing deep architectural analysis, interactive project spec inspection, and real-time developer productivity insights.",
+      techStack: ["Next.js", "TypeScript", "Node.js", "Tailwind CSS", "REST API", "Docker"],
+      images: [
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105819.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105834.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105848.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105902.png",
+      ],
+      jsonPayload: {
+        project_id: "prj_codebrain_v2",
+        analysis_engine: "AST_PARSER_V3",
+        telemetry: {
+          files_scanned: 142,
+          lines_analyzed: 28450,
+          code_quality_score: "A+",
+          security_vulnerabilities: 0
+        },
+        execution_env: "Node.js v20 / Next.js SSR"
       }
     },
     {
@@ -121,6 +200,13 @@ export function CaseStudiesSection() {
       architecture: "Cross-platform mobile app built with React Native, state management, secure device storage, and RESTful Python Flask / Node backend microservices.",
       solution: "Created an intuitive mobile credit card management experience with automated statement due alerts, graphical category expense breakdowns, and encrypted local card metadata.",
       techStack: ["React Native", "TypeScript", "Python (Flask)", "PostgreSQL", "Docker", "REST API"],
+      images: [
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105819.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105848.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105902.png",
+      ],
       jsonPayload: {
         card_id: "card_visa_platinum_9012",
         card_holder: "Janaka Namal",
@@ -135,8 +221,64 @@ export function CaseStudiesSection() {
           tokenized_storage: "AES_256_SECURE_STORAGE"
         }
       }
+    },
+    {
+      id: "devpulse",
+      title: "DevPulse Microservice Health Monitor",
+      subtitle: "Distributed API Monitoring & Infrastructure Telemetry Engine",
+      category: "Cloud Infrastructure & Monitoring",
+      badge: "System Telemetry",
+      metrics: [
+        { label: "Uptime SLA", value: "99.99%" },
+        { label: "Health Poll", value: "5 sec interval" },
+        { label: "Alert Dispatch", value: "< 100 ms" },
+        { label: "Nodes Tracked", value: "50+ Microservices" },
+      ],
+      problem: "Distributed microservice architectures required continuous ping monitoring, anomaly detection, and automated alerting for database latency spikes.",
+      architecture: "Decoupled health checking agent written in Python & Go, reporting back to Next.js dashboard UI via WebSockets and REST API endpoints.",
+      solution: "Engineered DevPulse—an automated microservice health suite providing instant failover alerts, dynamic status badges, and synthetic uptime tracking.",
+      techStack: ["Go", "Python", "Next.js", "Docker", "Redis", "REST API"],
+      images: [
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105721.png",
+        "/resources/Project Images/codeBrain/Screenshot 2026-09-30 105759.png"
+      ],
+      jsonPayload: {
+        node_cluster: "cluster_ap_south_colombo",
+        active_monitors: 52,
+        system_load: "0.14",
+        alert_channel: "SLACK_WEBHOOK_READY"
+      }
+    },
+    {
+      id: "taskflow",
+      title: "TaskFlow Enterprise Kanban & Sprint Suite",
+      subtitle: "Real-time Agile Workflow Engine with Role-Based Access Control",
+      category: "SaaS & Productivity",
+      badge: "Agile Workflow",
+      metrics: [
+        { label: "Realtime Sync", value: "WebSockets" },
+        { label: "RBAC Roles", value: "Admin / Dev / Lead" },
+        { label: "Sprint Board", value: "Drag & Drop" },
+        { label: "Latency", value: "< 20 ms" },
+      ],
+      problem: "Project teams needed a ultra-fast, responsive task management tool with instant team updates, ticket drag-and-drop, and granular permission controls.",
+      architecture: "React / Next.js frontend integrated with Node.js WebSocket gateway and PostgreSQL relational data schema.",
+      solution: "Delivered TaskFlow—a modern sprint management tool supporting real-time board updates, automated notification triggers, and custom workflow states.",
+      techStack: ["React", "Next.js", "Node.js", "PostgreSQL", "Tailwind CSS"],
+      images: [
+        "/resources/Project Images/storevia/Screenshot 2026-09-24 230042.png",
+        "/resources/Project Images/storevia/Screenshot 2026-09-26 090733.png"
+      ],
+      jsonPayload: {
+        board_id: "sprint_board_q4_2026",
+        active_sprint: "Sprint 14",
+        velocity: "42 story points",
+        db_transaction: "ISOLATION_READ_COMMITTED"
+      }
     }
   ];
+
+  const visibleStudies = showAll ? studies : studies.slice(0, 4);
 
   const copyPayload = (payload: object) => {
     navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
@@ -145,7 +287,7 @@ export function CaseStudiesSection() {
   };
 
   return (
-    <section id="case-studies" className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section id="case-studies" ref={sectionRef} className="py-24 bg-[#F7F7F8] relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
         <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
@@ -153,9 +295,9 @@ export function CaseStudiesSection() {
         </span>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header matching template: `- Projects` + `My Latest Projects` */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +312,7 @@ export function CaseStudiesSection() {
                 Projects
               </span>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
               My <span className="text-[#FF5500]">Latest Projects</span>
             </h2>
@@ -180,9 +322,9 @@ export function CaseStudiesSection() {
           </div>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {studies.map((study, index) => (
+        {/* Projects Grid (Responsive 2 columns, reduced width) */}
+        <div className="grid lg:grid-cols-2 gap-7">
+          {visibleStudies.map((study, index) => (
             <motion.div
               key={study.id}
               initial={{ opacity: 0, y: 25 }}
@@ -190,9 +332,36 @@ export function CaseStudiesSection() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-3xl p-7 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm border border-neutral-200/80 card-hover group"
+              className="bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm border border-neutral-200/80 card-hover group"
             >
               <div className="space-y-4">
+                {/* Project Screenshot Cover Preview Banner */}
+                {study.images && study.images.length > 0 && (
+                  <div
+                    onClick={() => {
+                      setSelectedStudy(study);
+                      setActiveImageIndex(0);
+                    }}
+                    className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden bg-neutral-950 cursor-pointer group/img border border-neutral-200/80 mb-2 shadow-sm"
+                  >
+                    <img
+                      src={encodeURI(study.images[0])}
+                      alt={`${study.title} cover`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover/img:opacity-90 transition-opacity" />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between z-10">
+                      <span className="text-xs font-semibold text-white/90 truncate max-w-[70%]">
+                        {study.title}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-black/60 text-white backdrop-blur-md border border-white/10">
+                        <ImageIcon className="w-3 h-3 text-[#FF5500]" />
+                        {study.images.length} UI Screenshots
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 {/* Category & Badge */}
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
@@ -205,7 +374,7 @@ export function CaseStudiesSection() {
 
                 {/* Title */}
                 <div>
-                  <h3 className="text-2xl font-black text-neutral-900 group-hover:text-[#FF5500] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-black text-neutral-900 group-hover:text-[#FF5500] transition-colors">
                     {study.title}
                   </h3>
                   <p className="text-xs text-neutral-500 font-medium mt-1">
@@ -214,11 +383,11 @@ export function CaseStudiesSection() {
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 py-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 py-1">
                   {study.metrics.map((m, idx) => (
-                    <div key={idx} className="bg-neutral-50 p-3 rounded-2xl border border-neutral-100">
+                    <div key={idx} className="bg-neutral-50 p-2.5 rounded-2xl border border-neutral-100">
                       <div className="text-[10px] text-neutral-500 font-semibold uppercase">{m.label}</div>
-                      <div className="text-sm font-black text-neutral-900 mt-0.5">{m.value}</div>
+                      <div className="text-xs sm:text-sm font-black text-neutral-900 mt-0.5">{m.value}</div>
                     </div>
                   ))}
                 </div>
@@ -236,7 +405,7 @@ export function CaseStudiesSection() {
                 </div>
 
                 {/* Tech Pills */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
+                <div className="flex flex-wrap gap-1.5 pt-1">
                   {study.techStack.map((tech) => (
                     <span
                       key={tech}
@@ -255,7 +424,10 @@ export function CaseStudiesSection() {
                 </span>
 
                 <button
-                  onClick={() => setSelectedStudy(study)}
+                  onClick={() => {
+                    setSelectedStudy(study);
+                    setActiveImageIndex(0);
+                  }}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold text-white bg-[#FF5500] hover:bg-[#E04B00] transition-all shadow-md shadow-[#FF5500]/20 group/btn"
                 >
                   <span>Inspect Spec</span>
@@ -268,12 +440,29 @@ export function CaseStudiesSection() {
           ))}
         </div>
 
+        {/* Show More / Show Less Toggle Button */}
+        {studies.length > 4 && (
+          <div className="mt-12 text-center flex justify-center">
+            <button
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-bold font-mono tracking-wider uppercase text-white bg-[#1E1E24] hover:bg-[#FF5500] transition-all shadow-lg hover:shadow-[#FF5500]/25 group"
+            >
+              <span>{showAll ? "Show Less Projects" : `Show More Projects (${studies.length - 4} More)`}</span>
+              {showAll ? (
+                <ChevronUp className="w-4 h-4 text-[#FF5500] group-hover:text-white transition-colors" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-[#FF5500] group-hover:text-white transition-colors" />
+              )}
+            </button>
+          </div>
+        )}
+
       </div>
 
       {/* Detail Modal */}
       {selectedStudy && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-900/60 backdrop-blur-md">
-          <div className="bg-white w-full max-w-3xl rounded-3xl overflow-hidden border border-neutral-200 shadow-2xl max-h-[90vh] flex flex-col">
+          <div className="bg-white w-full max-w-3xl rounded-3xl overflow-hidden border border-neutral-200 shadow-2xl max-h-[92vh] flex flex-col">
             {/* Modal Header */}
             <div className="bg-[#1E1E24] text-white p-6 border-b border-neutral-800 flex items-center justify-between">
               <div>
@@ -301,6 +490,88 @@ export function CaseStudiesSection() {
                   </div>
                 ))}
               </div>
+
+              {/* Project Screenshots & UI Interface Gallery */}
+              {selectedStudy.images && selectedStudy.images.length > 0 && (
+                <div className="space-y-3 bg-neutral-50 p-4 sm:p-5 rounded-2xl border border-neutral-200">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                      <ImageIcon className="w-4 h-4 text-[#FF5500]" />
+                      Project Screenshots & UI Spec ({selectedStudy.images.length} Screenshots)
+                    </h4>
+                    <span className="text-[11px] text-neutral-500 font-medium">Click image to expand full view</span>
+                  </div>
+
+                  {/* Main Active Image Display */}
+                  <div className="relative group bg-neutral-950 rounded-2xl overflow-hidden border border-neutral-200/90 aspect-[16/10] max-h-[360px] flex items-center justify-center shadow-inner">
+                    <img
+                      src={encodeURI(selectedStudy.images[activeImageIndex])}
+                      alt={`${selectedStudy.title} screenshot ${activeImageIndex + 1}`}
+                      className="w-full h-full object-contain cursor-zoom-in transition-transform duration-300 group-hover:scale-[1.01]"
+                      onClick={() => setFullscreenImage(selectedStudy.images![activeImageIndex])}
+                    />
+
+                    {/* Prev / Next arrows */}
+                    {selectedStudy.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveImageIndex((prev) => (prev > 0 ? prev - 1 : selectedStudy.images!.length - 1));
+                          }}
+                          className="absolute left-3 p-2.5 rounded-full bg-black/60 hover:bg-[#FF5500] text-white backdrop-blur-md transition-all shadow-md"
+                          title="Previous Screenshot"
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveImageIndex((prev) => (prev < selectedStudy.images!.length - 1 ? prev + 1 : 0));
+                          }}
+                          className="absolute right-3 p-2.5 rounded-full bg-black/60 hover:bg-[#FF5500] text-white backdrop-blur-md transition-all shadow-md"
+                          title="Next Screenshot"
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+                      </>
+                    )}
+
+                    {/* Fullscreen Button */}
+                    <button
+                      onClick={() => setFullscreenImage(selectedStudy.images![activeImageIndex])}
+                      className="absolute top-3 right-3 p-2 rounded-xl bg-black/60 text-white hover:bg-[#FF5500] backdrop-blur-md transition-colors"
+                      title="View Fullscreen"
+                    >
+                      <Maximize2 className="w-4 h-4" />
+                    </button>
+
+                    {/* Counter Badge */}
+                    <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-mono text-white border border-white/10">
+                      {activeImageIndex + 1} / {selectedStudy.images.length}
+                    </div>
+                  </div>
+
+                  {/* Thumbnail Selector Row */}
+                  {selectedStudy.images.length > 1 && (
+                    <div className="flex items-center gap-2.5 overflow-x-auto py-1 scrollbar-thin">
+                      {selectedStudy.images.map((img, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveImageIndex(idx)}
+                          className={`relative flex-shrink-0 w-24 h-16 rounded-xl overflow-hidden border-2 transition-all ${
+                            activeImageIndex === idx
+                              ? "border-[#FF5500] ring-2 ring-[#FF5500]/30 scale-105"
+                              : "border-neutral-200 opacity-65 hover:opacity-100"
+                          }`}
+                        >
+                          <img src={encodeURI(img)} alt="Thumbnail" className="w-full h-full object-cover" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Detailed Breakdown */}
               <div className="space-y-3">
@@ -356,6 +627,27 @@ export function CaseStudiesSection() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Fullscreen Lightbox Modal */}
+      {fullscreenImage && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8 cursor-pointer"
+          onClick={() => setFullscreenImage(null)}
+        >
+          <button
+            onClick={() => setFullscreenImage(null)}
+            className="absolute top-6 right-6 p-3 rounded-full bg-neutral-800 text-white hover:bg-[#FF5500] transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <img
+            src={encodeURI(fullscreenImage)}
+            alt="Fullscreen Spec Screenshot"
+            className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl border border-neutral-800 cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
     </section>

@@ -11,7 +11,7 @@ export function ExperienceTimeline() {
       company: "HexCode Pvt Ltd",
       location: "Kurunegala, Sri Lanka",
       period: "2024 — PRESENT",
-      type: "Full-Time",
+      type: "Full-Time - Remote",
       achievements: [
         "Develop and maintain backend APIs and services, supporting reliable communication between frontend applications, databases, and server-side systems.",
         "Design and implement scalable and secure backend architectures following modern software development and REST API design practices.",
@@ -102,7 +102,7 @@ export function ExperienceTimeline() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -118,7 +118,7 @@ export function ExperienceTimeline() {
                 Education & Experience
               </span>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
               Education & <span className="text-[#FF5500]">Work Experience</span>
             </h2>
@@ -130,7 +130,7 @@ export function ExperienceTimeline() {
 
         {/* Experience Cards List */}
         <div className="max-w-5xl mx-auto space-y-8">
-          
+
           {/* Work Experience Subhead */}
           <motion.div
             initial={{ opacity: 0, x: -15 }}

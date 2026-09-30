@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#FF5500" flood-opacity="0.35" />
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="84" height="84" rx="26" ry="26" fill="#FF5500" filter="url(#shadow)" />
+  <text x="50" y="67" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="58" fill="#FFFFFF" text-anchor="middle">J</text>
+</svg>

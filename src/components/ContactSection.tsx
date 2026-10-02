@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Calendar, CheckCircle2, ArrowUpRight, Building, Clock, ShieldCheck, Send } from "lucide-react";
+import { Mail, Calendar, CheckCircle2, ArrowUpRight, Building, Clock, ShieldCheck, Send, Loader2, AlertCircle } from "lucide-react";
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -22,6 +22,8 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,9 +32,48 @@ export function ContactSection() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      let data: { error?: string; success?: boolean } = {};
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        console.error("Non-JSON API response:", text);
+        throw new Error("Dev server needs a quick restart. Please stop and re-run `npm run dev` in your terminal.");
+      }
+
+      if (!response.ok || data.error) {
+        throw new Error(data.error || "Failed to send email. Please try again.");
+      }
+
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        organization: "",
+        inquiryType: "Full Stack Engineering",
+        message: "",
+      });
+    } catch (err: unknown) {
+      console.error("Error submitting contact form:", err);
+      setError(err instanceof Error ? err.message : "Failed to send email. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -172,6 +213,13 @@ export function ContactSection() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+                  {error && (
+                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 flex items-start gap-2.5 text-xs">
+                      <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                      <span>{error}</span>
+                    </div>
+                  )}
+
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-neutral-700 font-bold text-[11px]">Your Name *</label>
@@ -240,11 +288,16 @@ export function ContactSection() {
                   {/* Submit Button matching the orange pill `Let's Discuss Project ↗` from reference image */}
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs font-bold text-white bg-[#FF5500] hover:bg-[#E04B00] transition-all shadow-md shadow-[#FF5500]/25 hover:shadow-lg group"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs font-bold text-white bg-[#FF5500] hover:bg-[#E04B00] disabled:opacity-70 disabled:cursor-not-allowed transition-all shadow-md shadow-[#FF5500]/25 hover:shadow-lg group"
                   >
-                    <span>Let&apos;s Discuss Project</span>
+                    <span>{isSubmitting ? "Sending Message..." : "Let's Discuss Project"}</span>
                     <div className="w-5 h-5 rounded-full bg-white text-[#FF5500] flex items-center justify-center group-hover:rotate-45 transition-transform">
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      {isSubmitting ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin text-[#FF5500]" />
+                      ) : (
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      )}
                     </div>
                   </button>
                 </form>

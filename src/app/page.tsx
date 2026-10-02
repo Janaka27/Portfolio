@@ -19,7 +19,7 @@ export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#F7F7F8] text-[#111827] selection:bg-[#FF5500] selection:text-white font-sans antialiased">
+    <div className="min-h-screen bg-[#F7F7F8] dark:bg-[#0C0D11] text-[#111827] dark:text-[#F3F4F6] selection:bg-[#FF5500] selection:text-white font-sans antialiased transition-colors duration-300">
       {/* Header */}
       <Header onOpenResume={() => setResumeOpen(true)} />
 

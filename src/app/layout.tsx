@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -36,9 +37,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth`}>
-      <body className="bg-ink-black text-eggshell font-sans antialiased min-h-screen selection:bg-dusty-denim selection:text-ink-black">
-        {children}
+    <html lang="en" className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="bg-[#F7F7F8] dark:bg-[#0C0D11] text-[#111827] dark:text-[#F3F4F6] font-sans antialiased min-h-screen selection:bg-[#FF5500] selection:text-white transition-colors duration-300">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
         <SpeedInsights />
       </body>
     </html>

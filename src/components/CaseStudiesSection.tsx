@@ -192,16 +192,16 @@ export function CaseStudiesSection() {
       ],
       techStack: ["React Native", "TypeScript", "Node.js", "Python", "Local Storage", "REST API"],
       images: [
-        "/resources/Project Images/cardly/1.png",
+        "/resources/Project Images/cardly/cardly-1.png",
+        "/resources/Project Images/cardly/cardly-2.png",
+        "/resources/Project Images/cardly/cardly-3.png",
+        "/resources/Project Images/cardly/cardly-4.png",
+        "/resources/Project Images/cardly/cardly-logo.png",
         "/resources/Project Images/cardly/2.png",
-        "/resources/Project Images/cardly/3.png",
         "/resources/Project Images/cardly/4.png",
         "/resources/Project Images/cardly/5.png",
-        "/resources/Project Images/cardly/6.png",
         "/resources/Project Images/cardly/7.png",
-        "/resources/Project Images/cardly/8.png",
         "/resources/Project Images/cardly/9.png",
-        "/resources/Project Images/cardly/10.png",
       ],
       jsonPayload: {
         card_app_id: "cardly_app_v1",
@@ -274,10 +274,10 @@ export function CaseStudiesSection() {
   };
 
   return (
-    <section id="case-studies" ref={sectionRef} className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section id="case-studies" ref={sectionRef} className="py-24 bg-[#F7F7F8] dark:bg-[#0C0D11] transition-colors duration-300 relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
-        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
+        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40 dark:opacity-10">
           PROJECTS
         </span>
       </div>
@@ -300,10 +300,10 @@ export function CaseStudiesSection() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 dark:text-white tracking-tight">
               My <span className="text-[#FF5500]">Latest Projects</span>
             </h2>
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">
               Proven enterprise platforms designed, engineered, and shipped for high availability, sub-second latency, and scale.
             </p>
           </div>
@@ -319,7 +319,7 @@ export function CaseStudiesSection() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm border border-neutral-200/80 card-hover group"
+              className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm border border-neutral-200/80 dark:border-neutral-800 card-hover group"
             >
               <div className="space-y-4">
                 {/* Project Screenshot Cover Preview Banner */}
@@ -351,17 +351,17 @@ export function CaseStudiesSection() {
 
                 {/* Category & Badge */}
                 <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                  <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                     {study.category}
                   </span>
                   <div className="flex items-center gap-2">
                     {study.status && (
-                      <span className="text-[10px] font-mono font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1">
+                      <span className="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-500/15 px-2.5 py-0.5 rounded-full border border-amber-500/20 dark:border-amber-500/30 flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                         Under Dev
                       </span>
                     )}
-                    <span className="text-xs font-mono font-bold text-[#FF5500] bg-[#FFF2EC] px-3 py-1 rounded-full border border-[#FF5500]/20">
+                    <span className="text-xs font-mono font-bold text-[#FF5500] bg-[#FF5500]/10 dark:bg-[#FF5500]/15 px-3 py-1 rounded-full border border-[#FF5500]/20 dark:border-[#FF5500]/30">
                       {study.badge}
                     </span>
                   </div>
@@ -369,10 +369,10 @@ export function CaseStudiesSection() {
 
                 {/* Title */}
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-neutral-900 group-hover:text-[#FF5500] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-black text-neutral-900 dark:text-white group-hover:text-[#FF5500] dark:group-hover:text-[#FF5500] transition-colors">
                     {study.title}
                   </h3>
-                  <p className="text-xs text-neutral-500 font-medium mt-1">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                     {study.subtitle}
                   </p>
                 </div>
@@ -380,21 +380,21 @@ export function CaseStudiesSection() {
                 {/* Metrics */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 py-1">
                   {study.metrics.map((m, idx) => (
-                    <div key={idx} className="bg-neutral-50 p-2.5 rounded-2xl border border-neutral-100">
-                      <div className="text-[10px] text-neutral-500 font-semibold uppercase">{m.label}</div>
-                      <div className="text-xs sm:text-sm font-black text-neutral-900 mt-0.5">{m.value}</div>
+                    <div key={idx} className="bg-neutral-50 dark:bg-neutral-800/60 p-2.5 rounded-2xl border border-neutral-100 dark:border-neutral-700/80">
+                      <div className="text-[10px] text-neutral-500 dark:text-neutral-400 font-semibold uppercase">{m.label}</div>
+                      <div className="text-xs sm:text-sm font-black text-neutral-900 dark:text-white mt-0.5">{m.value}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Description */}
-                <div className="space-y-2 text-xs text-neutral-600 leading-relaxed font-normal">
+                <div className="space-y-2 text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed font-normal">
                   <p>
-                    <strong className="text-neutral-900 font-semibold">Problem: </strong>
+                    <strong className="text-neutral-900 dark:text-white font-semibold">Problem: </strong>
                     {study.problem}
                   </p>
                   <p>
-                    <strong className="text-neutral-900 font-semibold">Solution: </strong>
+                    <strong className="text-neutral-900 dark:text-white font-semibold">Solution: </strong>
                     {study.solution}
                   </p>
                 </div>
@@ -404,7 +404,7 @@ export function CaseStudiesSection() {
                   {study.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 rounded-full text-[11px] font-mono bg-neutral-100 text-neutral-700 border border-neutral-200"
+                      className="px-3 py-1 rounded-full text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700"
                     >
                       {tech}
                     </span>
@@ -413,8 +413,8 @@ export function CaseStudiesSection() {
               </div>
 
               {/* Card Footer Button */}
-              <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
-                <span className="text-xs font-semibold text-neutral-500 flex items-center gap-1.5">
+              <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
+                <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-[#FF5500]" /> Verified Architecture
                 </span>
 
@@ -483,30 +483,30 @@ export function CaseStudiesSection() {
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs text-neutral-800">
+            <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs text-neutral-800 dark:text-neutral-200 bg-white dark:bg-neutral-900">
               {/* Metrics Header */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {selectedStudy.metrics.map((m, idx) => (
-                  <div key={idx} className="bg-neutral-50 p-3.5 rounded-2xl border border-neutral-200">
-                    <div className="text-[10px] text-neutral-500 font-semibold">{m.label}</div>
-                    <div className="text-base font-black text-neutral-900 mt-1">{m.value}</div>
+                  <div key={idx} className="bg-neutral-50 dark:bg-neutral-800/60 p-3.5 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
+                    <div className="text-[10px] text-neutral-500 dark:text-neutral-400 font-semibold">{m.label}</div>
+                    <div className="text-base font-black text-neutral-900 dark:text-white mt-1">{m.value}</div>
                   </div>
                 ))}
               </div>
 
               {/* Project Screenshots & UI Interface Gallery */}
               {selectedStudy.images && selectedStudy.images.length > 0 && (
-                <div className="space-y-3 bg-neutral-50 p-4 sm:p-5 rounded-2xl border border-neutral-200">
+                <div className="space-y-3 bg-neutral-50 dark:bg-neutral-800/60 p-4 sm:p-5 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                    <h4 className="text-xs font-extrabold text-neutral-900 dark:text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
                       <ImageIcon className="w-4 h-4 text-[#FF5500]" />
                       Project Screenshots & UI Spec ({selectedStudy.images.length} Screenshots)
                     </h4>
-                    <span className="text-[11px] text-neutral-500 font-medium">Click image to expand full view</span>
+                    <span className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">Click image to expand full view</span>
                   </div>
 
                   {/* Main Active Image Display */}
-                  <div className="relative group bg-neutral-950 rounded-2xl overflow-hidden border border-neutral-200/90 aspect-[16/10] max-h-[360px] flex items-center justify-center shadow-inner">
+                  <div className="relative group bg-neutral-950 rounded-2xl overflow-hidden border border-neutral-200/90 dark:border-neutral-700 aspect-[16/10] max-h-[360px] flex items-center justify-center shadow-inner">
                     <img
                       src={encodeURI(selectedStudy.images[activeImageIndex])}
                       alt={`${selectedStudy.title} screenshot ${activeImageIndex + 1}`}
@@ -565,7 +565,7 @@ export function CaseStudiesSection() {
                           className={`relative flex-shrink-0 w-24 h-16 rounded-xl overflow-hidden border-2 transition-all ${
                             activeImageIndex === idx
                               ? "border-[#FF5500] ring-2 ring-[#FF5500]/30 scale-105"
-                              : "border-neutral-200 opacity-65 hover:opacity-100"
+                              : "border-neutral-200 dark:border-neutral-700 opacity-65 hover:opacity-100"
                           }`}
                         >
                           <img src={encodeURI(img)} alt="Thumbnail" className="w-full h-full object-cover" />
@@ -578,30 +578,30 @@ export function CaseStudiesSection() {
 
               {/* Problem Statement */}
               <div className="space-y-3">
-                <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono">
+                <h4 className="text-xs font-extrabold text-neutral-900 dark:text-white uppercase tracking-wider font-mono">
                   Problem Statement
                 </h4>
-                <p className="text-xs text-neutral-600 leading-relaxed bg-neutral-50 p-4 rounded-2xl border border-neutral-200">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
                   {selectedStudy.problem}
                 </p>
               </div>
 
               {/* Architectural Solution & Strategy */}
               <div className="space-y-3">
-                <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono">
+                <h4 className="text-xs font-extrabold text-neutral-900 dark:text-white uppercase tracking-wider font-mono">
                   Architectural Solution & Strategy
                 </h4>
-                <p className="text-xs text-neutral-600 leading-relaxed bg-neutral-50 p-4 rounded-2xl border border-neutral-200">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
                   {selectedStudy.architecture}
                 </p>
               </div>
 
               {/* Solution Overview */}
               <div className="space-y-3">
-                <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono">
+                <h4 className="text-xs font-extrabold text-neutral-900 dark:text-white uppercase tracking-wider font-mono">
                   Solution Overview
                 </h4>
-                <p className="text-xs text-neutral-600 leading-relaxed bg-neutral-50 p-4 rounded-2xl border border-neutral-200">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
                   {selectedStudy.solution}
                 </p>
               </div>
@@ -609,13 +609,13 @@ export function CaseStudiesSection() {
               {/* Key Features & Capabilities */}
               {selectedStudy.keyFeatures && selectedStudy.keyFeatures.length > 0 && (
                 <div className="space-y-3">
-                  <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                  <h4 className="text-xs font-extrabold text-neutral-900 dark:text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
                     <Zap className="w-4 h-4 text-[#FF5500]" />
                     Key Features & System Capabilities
                   </h4>
-                  <div className="grid sm:grid-cols-2 gap-2.5 bg-neutral-50 p-4 rounded-2xl border border-neutral-200">
+                  <div className="grid sm:grid-cols-2 gap-2.5 bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
                     {selectedStudy.keyFeatures.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-neutral-700 bg-white p-3 rounded-xl border border-neutral-200/80 shadow-2xs">
+                      <div key={idx} className="flex items-start gap-2 text-xs text-neutral-700 dark:text-neutral-300 bg-white dark:bg-neutral-800 p-3 rounded-xl border border-neutral-200/80 dark:border-neutral-700 shadow-2xs">
                         <CheckCircle2 className="w-4 h-4 text-[#FF5500] shrink-0 mt-0.5" />
                         <span className="font-medium leading-snug">{feature}</span>
                       </div>
@@ -627,13 +627,13 @@ export function CaseStudiesSection() {
               {/* JSON API Response Payload Simulator */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-extrabold text-neutral-900 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                  <h4 className="text-xs font-extrabold text-neutral-900 dark:text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
                     <Terminal className="w-4 h-4 text-[#FF5500]" />
                     Simulated Payload & Telemetry Spec
                   </h4>
                   <button
                     onClick={() => copyPayload(selectedStudy.jsonPayload)}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-neutral-100 text-neutral-700 hover:bg-neutral-200 rounded-full border border-neutral-200 transition-colors"
+                    className="inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-full border border-neutral-200 dark:border-neutral-700 transition-colors"
                   >
                     {copiedPayload ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copiedPayload ? "Copied" : "Copy JSON"}</span>
@@ -649,11 +649,11 @@ export function CaseStudiesSection() {
             </div>
 
             {/* Modal Footer */}
-            <div className="bg-neutral-50 p-4 sm:p-5 border-t border-neutral-200 flex items-center justify-between">
-              <span className="text-xs font-medium text-neutral-500">Target SLA: 99.99% Availability</span>
+            <div className="bg-neutral-50 dark:bg-neutral-900 p-4 sm:p-5 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Target SLA: 99.99% Availability</span>
               <button
                 onClick={() => setSelectedStudy(null)}
-                className="px-5 py-2.5 rounded-full bg-[#1E1E24] hover:bg-neutral-800 text-white text-xs font-bold transition-colors"
+                className="px-5 py-2.5 rounded-full bg-[#1E1E24] dark:bg-neutral-800 hover:bg-neutral-800 dark:hover:bg-neutral-700 text-white text-xs font-bold transition-colors"
               >
                 Close Spec Modal
               </button>

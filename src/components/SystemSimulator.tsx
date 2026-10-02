@@ -178,10 +178,10 @@ export function SystemSimulator() {
   };
 
   return (
-    <section id="sandbox" className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section id="sandbox" className="py-24 bg-[#F7F7F8] dark:bg-[#0C0D11] transition-colors duration-300 relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
-        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
+        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40 dark:opacity-10">
           API TESTER
         </span>
       </div>
@@ -198,10 +198,10 @@ export function SystemSimulator() {
               </span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 dark:text-white tracking-tight">
               Interactive <span className="text-[#FF5500]">API Endpoint Tester</span>
             </h2>
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">
               Test RESTful endpoints, configure custom HTTP methods, edit request headers & JSON body payloads in real-time.
             </p>
           </div>
@@ -223,7 +223,7 @@ export function SystemSimulator() {
                         : m === "PUT"
                         ? "bg-amber-600 text-white border-amber-500 shadow-lg shadow-amber-500/25 ring-2 ring-amber-500/30"
                         : "bg-rose-600 text-white border-rose-500 shadow-lg shadow-rose-500/25 ring-2 ring-rose-500/30"
-                      : "bg-white text-neutral-800 border-neutral-200 hover:border-neutral-400 shadow-sm"
+                      : "bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 shadow-sm"
                   }`}
                 >
                   {/* Animated Ping Indicator */}

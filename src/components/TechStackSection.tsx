@@ -65,10 +65,10 @@ export function TechStackSection() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section id="services" className="py-24 bg-[#F7F7F8] dark:bg-[#0C0D11] transition-colors duration-300 relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
-        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
+        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40 dark:opacity-10">
           SERVICES
         </span>
       </div>
@@ -91,10 +91,10 @@ export function TechStackSection() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 dark:text-white tracking-tight">
               My <span className="text-[#FF5500]">Services</span>
             </h2>
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">
               Comprehensive engineering capabilities tailored for fast-growing scaleups and mission-critical enterprise platforms.
             </p>
           </div>
@@ -127,7 +127,7 @@ export function TechStackSection() {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
                   whileHover={{ y: -6 }}
-                  className="bg-[#1E1E24] text-white p-7 rounded-3xl shadow-2xl flex flex-col justify-between relative group border border-neutral-800 transition-all duration-300"
+                  className="bg-[#1E1E24] dark:bg-neutral-900 text-white p-7 rounded-3xl shadow-2xl flex flex-col justify-between relative group border border-neutral-800 transition-all duration-300"
                 >
                   <div>
                     <div className="flex items-center justify-between pb-6">
@@ -177,29 +177,29 @@ export function TechStackSection() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -6 }}
-                className="bg-white text-neutral-900 p-7 rounded-3xl shadow-sm border border-neutral-200/80 flex flex-col justify-between relative group transition-all duration-300"
+                className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white p-7 rounded-3xl shadow-sm border border-neutral-200/80 dark:border-neutral-800 flex flex-col justify-between relative group transition-all duration-300"
               >
                 <div>
                   <div className="flex items-center justify-between pb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-800 group-hover:bg-[#FF5500] group-hover:text-white transition-colors">
+                    <div className="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-800 dark:text-neutral-200 group-hover:bg-[#FF5500] group-hover:text-white dark:group-hover:bg-[#FF5500] dark:group-hover:text-white transition-colors">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <div className="w-9 h-9 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center group-hover:bg-[#FF5500] group-hover:text-white group-hover:rotate-45 transition-all">
+                    <div className="w-9 h-9 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center group-hover:bg-[#FF5500] group-hover:text-white dark:group-hover:bg-[#FF5500] dark:group-hover:text-white group-hover:rotate-45 transition-all">
                       <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-neutral-900 tracking-tight mb-3 group-hover:text-[#FF5500] transition-colors">
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white tracking-tight mb-3 group-hover:text-[#FF5500] transition-colors">
                     {service.title}
                   </h3>
 
-                  <p className="text-xs text-neutral-600 leading-relaxed font-normal mb-6">
+                  <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed font-normal mb-6">
                     {service.description}
                   </p>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t border-neutral-100">
-                  <div className="flex items-center gap-1.5 text-xs text-neutral-800 font-semibold">
+                <div className="space-y-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
+                  <div className="flex items-center gap-1.5 text-xs text-neutral-800 dark:text-neutral-200 font-semibold">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#FF5500]" />
                     <span>{service.impact}</span>
                   </div>
@@ -208,7 +208,7 @@ export function TechStackSection() {
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-neutral-100 text-neutral-700 border border-neutral-200"
+                        className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700"
                       >
                         {tag}
                       </span>

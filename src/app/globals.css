@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-orange-brand: #FF5500;
   --color-orange-hover: #E04B00;
   --color-orange-light: #FFF2EC;
-  --color-dark-card: #1E1E24;
-  --color-dark-body: #111115;
+  --color-dark-card: #14151B;
+  --color-dark-body: #0C0D11;
   --color-light-bg: #F7F7F8;
   --color-light-card: #FFFFFF;
 }
@@ -15,11 +17,18 @@
   --foreground: #111827;
 }
 
+.dark {
+  --background: #0C0D11;
+  --foreground: #F3F4F6;
+  color-scheme: dark;
+}
+
 body {
-  background-color: #F7F7F8;
-  color: #111827;
+  background-color: var(--background);
+  color: var(--foreground);
   overflow-x: hidden;
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom sleek scrollbars for light & dark themes */

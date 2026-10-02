@@ -31,7 +31,7 @@ export function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-white border-t border-neutral-200 py-12 text-xs text-neutral-600"
+      className="bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800 py-12 text-xs text-neutral-600 dark:text-neutral-400 transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -41,15 +41,15 @@ export function Footer() {
               <div className="w-8 h-8 rounded-xl bg-[#FF5500] text-white flex items-center justify-center font-extrabold text-xs shadow-md shadow-[#FF5500]/20">
                 J
               </div>
-              <span className="font-extrabold text-neutral-900 text-sm">Janaka<span className="text-[#FF5500]">.</span></span>
+              <span className="font-extrabold text-neutral-900 dark:text-white text-sm">Janaka<span className="text-[#FF5500]">.</span></span>
             </div>
-            <span className="hidden sm:inline text-neutral-300">•</span>
+            <span className="hidden sm:inline text-neutral-300 dark:text-neutral-700">•</span>
             
             {/* Direct Contact, GitHub & LinkedIn Pills */}
             <div className="flex flex-wrap items-center gap-2.5 font-mono text-[11px]">
               <a
                 href="mailto:janakanamal.mails@gmail.com"
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 hover:text-[#FF5500] hover:bg-neutral-200 transition-colors border border-neutral-200"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-[#FF5500] dark:hover:text-[#FF5500] hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors border border-neutral-200 dark:border-neutral-700"
               >
                 <Mail className="w-3.5 h-3.5 text-[#FF5500]" />
                 <span>janakanamal.mails@gmail.com</span>
@@ -58,7 +58,7 @@ export function Footer() {
                 href="https://github.com/Janaka27"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 hover:text-[#FF5500] hover:bg-neutral-200 transition-colors border border-neutral-200"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-[#FF5500] dark:hover:text-[#FF5500] hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors border border-neutral-200 dark:border-neutral-700"
               >
                 <GithubIcon className="w-3.5 h-3.5 text-[#FF5500]" />
                 <span>github.com/Janaka27</span>
@@ -67,7 +67,7 @@ export function Footer() {
                 href="https://www.linkedin.com/in/janaka-namal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 hover:text-[#FF5500] hover:bg-neutral-200 transition-colors border border-neutral-200"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-[#FF5500] dark:hover:text-[#FF5500] hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors border border-neutral-200 dark:border-neutral-700"
               >
                 <LinkedinIcon className="w-3.5 h-3.5 text-[#FF5500]" />
                 <span>linkedin.com/in/janaka-namal</span>
@@ -76,28 +76,18 @@ export function Footer() {
           </div>
 
           {/* Nav Links */}
-          <div className="flex flex-wrap items-center gap-6 text-xs font-semibold">
+          <div className="flex flex-wrap items-center gap-6 text-xs font-semibold text-neutral-700 dark:text-neutral-300">
             <a href="#overview" className="hover:text-[#FF5500] transition-colors">Overview</a>
             <a href="#services" className="hover:text-[#FF5500] transition-colors">Services</a>
             <a href="#case-studies" className="hover:text-[#FF5500] transition-colors">Projects</a>
             <a href="#experience" className="hover:text-[#FF5500] transition-colors">Experience</a>
             <a href="#contact" className="hover:text-[#FF5500] transition-colors">Contact</a>
           </div>
-
-          {/* Back to top */}
-          <button
-            onClick={scrollToTop}
-            className="p-2.5 rounded-full bg-neutral-100 hover:bg-[#FF5500] text-neutral-800 hover:text-white transition-all flex items-center gap-1.5 text-xs font-bold shadow-sm"
-            aria-label="Back to Top"
-          >
-            <span>Top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
         </div>
 
-        <div className="pt-6 border-t border-neutral-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-neutral-500">
+        <div className="pt-6 border-t border-neutral-100 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-neutral-500 dark:text-neutral-400">
           <p>© {new Date().getFullYear()} T.M. Janaka Namal Thennakoon. All rights reserved.</p>
-          <div className="flex items-center gap-2 text-neutral-500">
+          <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400">
             <ShieldCheck className="w-3.5 h-3.5 text-[#FF5500]" />
             <span>Software Engineering Undergraduate | Full Stack Developer | Backend Developer</span>
           </div>

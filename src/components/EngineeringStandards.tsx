@@ -49,10 +49,10 @@ export function EngineeringStandards() {
   ];
 
   return (
-    <section id="architecture" className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section id="architecture" className="py-24 bg-[#F7F7F8] dark:bg-[#0C0D11] transition-colors duration-300 relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
-        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
+        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40 dark:opacity-10">
           STANDARDS
         </span>
       </div>
@@ -75,10 +75,10 @@ export function EngineeringStandards() {
               </span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 dark:text-white tracking-tight">
               Enterprise <span className="text-[#FF5500]">Security & Quality</span> Standards
             </h2>
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">
               Writing clean code is only half the battle. Enterprise software demands security hardening, deep observability, test automation, and measurable SLA adherence.
             </p>
           </div>
@@ -96,18 +96,18 @@ export function EngineeringStandards() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -4 }}
-                className="bg-white rounded-3xl p-7 sm:p-8 border border-neutral-200/80 shadow-sm card-hover space-y-5"
+                className="bg-white dark:bg-neutral-900 rounded-3xl p-7 sm:p-8 border border-neutral-200/80 dark:border-neutral-800 shadow-sm card-hover space-y-5"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-[#FFF2EC] text-[#FF5500] flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-[#FFF2EC] dark:bg-[#FF5500]/20 text-[#FF5500] flex items-center justify-center shrink-0">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-neutral-900">{pillar.title}</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{pillar.title}</h3>
                 </div>
 
                 <ul className="space-y-3 pt-2">
                   {pillar.points.map((pt, pIdx) => (
-                    <li key={pIdx} className="flex items-start gap-3 text-xs text-neutral-600 leading-relaxed font-medium">
+                    <li key={pIdx} className="flex items-start gap-3 text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed font-medium">
                       <CheckCircle2 className="w-4 h-4 text-[#FF5500] shrink-0 mt-0.5" />
                       <span>{pt}</span>
                     </li>

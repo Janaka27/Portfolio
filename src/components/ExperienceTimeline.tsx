@@ -93,10 +93,10 @@ export function ExperienceTimeline() {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section id="experience" className="py-24 bg-[#F7F7F8] dark:bg-[#0C0D11] transition-colors duration-300 relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
-        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
+        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40 dark:opacity-10">
           EXPERIENCE
         </span>
       </div>
@@ -119,10 +119,10 @@ export function ExperienceTimeline() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 dark:text-white tracking-tight">
               Education & <span className="text-[#FF5500]">Work Experience</span>
             </h2>
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">
               Academic background in Software Engineering and ICT Honours paired with hands-on industry experience at HexCode Pvt Ltd.
             </p>
           </div>
@@ -151,19 +151,19 @@ export function ExperienceTimeline() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
               whileHover={{ y: -3 }}
-              className="bg-white rounded-3xl p-7 sm:p-8 shadow-sm border border-neutral-200/80 card-hover space-y-4"
+              className="bg-white dark:bg-neutral-900 rounded-3xl p-7 sm:p-8 shadow-sm border border-neutral-200/80 dark:border-neutral-800 card-hover space-y-4"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-100 dark:border-neutral-800">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-neutral-900">{exp.role}</h3>
+                  <h3 className="text-xl sm:text-2xl font-black text-neutral-900 dark:text-white">{exp.role}</h3>
                   <div className="text-sm font-bold text-[#FF5500] mt-1 flex items-center gap-2">
                     <span>{exp.company}</span>
-                    <span className="text-xs text-neutral-400 font-normal">• {exp.location}</span>
+                    <span className="text-xs text-neutral-400 dark:text-neutral-500 font-normal">• {exp.location}</span>
                   </div>
                 </div>
 
                 <div className="shrink-0">
-                  <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold text-neutral-700 bg-neutral-100 border border-neutral-200">
+                  <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
                     {exp.period}
                   </span>
                 </div>
@@ -172,7 +172,7 @@ export function ExperienceTimeline() {
               {/* Bullet points */}
               <ul className="space-y-2.5 pt-1">
                 {exp.achievements.map((ach, aIdx) => (
-                  <li key={aIdx} className="flex items-start gap-2.5 text-xs text-neutral-600 leading-relaxed font-normal">
+                  <li key={aIdx} className="flex items-start gap-2.5 text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed font-normal">
                     <CheckCircle2 className="w-4 h-4 text-[#FF5500] shrink-0 mt-0.5" />
                     <span>{ach}</span>
                   </li>
@@ -184,7 +184,7 @@ export function ExperienceTimeline() {
                 {exp.stack.map((s) => (
                   <span
                     key={s}
-                    className="px-3 py-1 rounded-full text-[11px] font-mono bg-neutral-100 text-neutral-700 border border-neutral-200"
+                    className="px-3 py-1 rounded-full text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700"
                   >
                     {s}
                   </span>
@@ -214,18 +214,18 @@ export function ExperienceTimeline() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: idx * 0.08, ease: "easeOut" }}
                 whileHover={{ y: -3 }}
-                className="bg-white rounded-3xl p-6 shadow-sm border border-neutral-200/80 card-hover flex flex-col justify-between space-y-3"
+                className="bg-white dark:bg-neutral-900 rounded-3xl p-6 shadow-sm border border-neutral-200/80 dark:border-neutral-800 card-hover flex flex-col justify-between space-y-3"
               >
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-neutral-100 text-neutral-700 border border-neutral-200">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
                       {edu.period}
                     </span>
                   </div>
-                  <h3 className="text-base font-black text-neutral-900 mt-3">{edu.degree}</h3>
+                  <h3 className="text-base font-black text-neutral-900 dark:text-white mt-3">{edu.degree}</h3>
                   <p className="text-xs font-bold text-[#FF5500] mt-1">{edu.institution}</p>
                 </div>
-                <div className="text-xs text-neutral-500 font-medium pt-2 border-t border-neutral-100">
+                <div className="text-xs text-neutral-500 dark:text-neutral-400 font-medium pt-2 border-t border-neutral-100 dark:border-neutral-800">
                   {edu.honors}
                 </div>
               </motion.div>
@@ -253,15 +253,15 @@ export function ExperienceTimeline() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4, delay: idx * 0.06, ease: "easeOut" }}
                 whileHover={{ y: -3 }}
-                className="bg-white rounded-2xl p-5 shadow-sm border border-neutral-200/80 card-hover flex flex-col justify-between space-y-2"
+                className="bg-white dark:bg-neutral-900 rounded-2xl p-5 shadow-sm border border-neutral-200/80 dark:border-neutral-800 card-hover flex flex-col justify-between space-y-2"
               >
                 <div>
-                  <span className="text-[10px] font-mono font-bold text-[#FF5500] bg-[#FFF2EC] px-2.5 py-0.5 rounded-full border border-[#FF5500]/20">
+                  <span className="text-[10px] font-mono font-bold text-[#FF5500] bg-[#FFF2EC] dark:bg-[#FF5500]/20 px-2.5 py-0.5 rounded-full border border-[#FF5500]/20">
                     {cert.date}
                   </span>
-                  <h4 className="text-xs font-bold text-neutral-900 mt-2 leading-snug">{cert.title}</h4>
+                  <h4 className="text-xs font-bold text-neutral-900 dark:text-white mt-2 leading-snug">{cert.title}</h4>
                 </div>
-                <p className="text-[11px] text-neutral-500 font-medium pt-2 border-t border-neutral-100">
+                <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium pt-2 border-t border-neutral-100 dark:border-neutral-800">
                   {cert.issuer}
                 </p>
               </motion.div>

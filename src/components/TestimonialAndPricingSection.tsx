@@ -54,10 +54,10 @@ export function TestimonialAndPricingSection() {
   ];
 
   return (
-    <section className="py-24 bg-[#F7F7F8] relative overflow-hidden">
+    <section className="py-24 bg-[#F7F7F8] dark:bg-[#0C0D11] transition-colors duration-300 relative overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 left-0 right-0 z-0 text-center pointer-events-none select-none">
-        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40">
+        <span className="watermark-text text-8xl sm:text-[12rem] lg:text-[15rem] font-black uppercase tracking-widest block opacity-40 dark:opacity-10">
           RESULTS
         </span>
       </div>
@@ -81,7 +81,7 @@ export function TestimonialAndPricingSection() {
               </span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 dark:text-white tracking-tight">
               Testimonials that Lead to <span className="text-[#FF5500]">My Results</span>
             </h2>
           </motion.div>
@@ -96,7 +96,7 @@ export function TestimonialAndPricingSection() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -4 }}
-                className="bg-[#1E1E24] text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative flex flex-col justify-between border border-neutral-800 card-hover"
+                className="bg-[#1E1E24] dark:bg-neutral-900 text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative flex flex-col justify-between border border-neutral-800 card-hover"
               >
                 <div>
                   {/* Rating Stars matching image */}
@@ -147,7 +147,7 @@ export function TestimonialAndPricingSection() {
               </span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 dark:text-white tracking-tight">
               Flexible <span className="text-[#FF5500]">Retainer Options</span>
             </h2>
           </motion.div>
@@ -163,8 +163,8 @@ export function TestimonialAndPricingSection() {
                 whileHover={{ y: -4 }}
                 className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-sm border transition-all card-hover relative ${
                   plan.isPopular
-                    ? "bg-white border-[#FF5500] ring-2 ring-[#FF5500]/20 shadow-xl"
-                    : "bg-white border-neutral-200/80"
+                    ? "bg-white dark:bg-neutral-900 border-[#FF5500] dark:border-[#FF5500] ring-2 ring-[#FF5500]/20 shadow-xl"
+                    : "bg-white dark:bg-neutral-900 border-neutral-200/80 dark:border-neutral-800"
                 }`}
               >
                 {plan.isPopular && (
@@ -174,18 +174,18 @@ export function TestimonialAndPricingSection() {
                 )}
 
                 <div>
-                  <h3 className="text-xl font-bold text-neutral-900">{plan.name}</h3>
-                  <p className="text-xs text-neutral-500 mt-1 mb-6 font-medium">{plan.subtitle}</p>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{plan.name}</h3>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 mb-6 font-medium">{plan.subtitle}</p>
 
                   <div className="flex items-baseline gap-1 my-4">
                     <span className="text-4xl sm:text-5xl font-black text-[#FF5500]">{plan.price}</span>
-                    <span className="text-sm font-bold text-neutral-500">{plan.period}</span>
+                    <span className="text-sm font-bold text-neutral-500 dark:text-neutral-400">{plan.period}</span>
                   </div>
 
-                  <ul className="space-y-3 my-8 pt-4 border-t border-neutral-100">
+                  <ul className="space-y-3 my-8 pt-4 border-t border-neutral-100 dark:border-neutral-800">
                     {plan.features.map((feat, fIdx) => (
-                      <li key={fIdx} className="flex items-start gap-3 text-xs text-neutral-700 font-medium">
-                        <div className="w-4 h-4 rounded-full bg-[#FFF2EC] text-[#FF5500] flex items-center justify-center shrink-0 mt-0.5">
+                      <li key={fIdx} className="flex items-start gap-3 text-xs text-neutral-700 dark:text-neutral-300 font-medium">
+                        <div className="w-4 h-4 rounded-full bg-[#FFF2EC] dark:bg-[#FF5500]/20 text-[#FF5500] flex items-center justify-center shrink-0 mt-0.5">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                         </div>
                         <span>{feat}</span>
@@ -199,7 +199,7 @@ export function TestimonialAndPricingSection() {
                   className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-xs font-bold transition-all shadow-md group ${
                     plan.isPopular
                       ? "bg-[#FF5500] text-white hover:bg-[#E04B00] shadow-[#FF5500]/25"
-                      : "bg-[#1E1E24] text-white hover:bg-neutral-800"
+                      : "bg-[#1E1E24] dark:bg-neutral-800 text-white hover:bg-neutral-800 dark:hover:bg-neutral-700"
                   }`}
                 >
                   <span>Get Started Today</span>

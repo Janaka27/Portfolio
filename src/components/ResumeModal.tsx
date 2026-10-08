@@ -141,7 +141,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           {/* Featured Projects */}
           <div className="space-y-3">
             <h2 className="text-xs font-mono font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               <div className="bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
                 <strong className="text-neutral-900 dark:text-white block mb-1">1. Storevia</strong>
                 <p className="text-neutral-600 dark:text-neutral-300 text-[11px]">Multi-Vendor E-Commerce Platform with merchant dashboards & payment pipeline.</p>
@@ -153,6 +153,10 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               <div className="bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
                 <strong className="text-neutral-900 dark:text-white block mb-1">3. Cardly</strong>
                 <p className="text-neutral-600 dark:text-neutral-300 text-[11px]">Credit Card Management Mobile App built with React Native & RESTful backend.</p>
+              </div>
+              <div className="bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
+                <strong className="text-neutral-900 dark:text-white block mb-1">4. GradeFlow</strong>
+                <p className="text-neutral-600 dark:text-neutral-300 text-[11px]">University Student Results, Timetable & Automated GPA Management Mobile App.</p>
               </div>
             </div>
           </div>

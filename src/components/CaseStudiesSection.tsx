@@ -262,6 +262,55 @@ export function CaseStudiesSection() {
           condition: "LIKE_NEW"
         }
       }
+    },
+    {
+      id: "gradeflow",
+      title: "GradeFlow",
+      subtitle: "University Results, Timetable & GPA Management Mobile App",
+      category: "EdTech & Student Productivity Mobile App",
+      badge: "GPA & Timetable Engine",
+      metrics: [
+        { label: "Platform", value: "iOS & Android" },
+        { label: "Timetable Sync", value: "Class & Exams" },
+        { label: "GPA Engine", value: "Real-Time Auto" },
+        { label: "Result Vis", value: "Grade Breakdown" },
+      ],
+      problem: "University students often struggle to maintain organized class timetables, stay updated on exam schedules, and accurately calculate their semester and cumulative GPAs when exam marks are released.",
+      architecture: "Cross-platform mobile application architecture built with React Native and Expo. Integrates an automated GPA calculation engine based on credit weighting algorithms, automated schedule mapping, and secure local data persistence.",
+      solution: "Developed GradeFlow, a feature-rich mobile app tailored for university students to effortlessly manage class timetables, automate exam schedule tracking, log released subject marks, and instantly calculate clear GPA and CGPA metrics.",
+      keyFeatures: [
+        "Class timetable & weekly schedule management",
+        "Automated exam schedule tracking & countdowns",
+        "Subject marks logging after result releases",
+        "Instant automated SGPA & CGPA calculation engine",
+        "Clear subject-wise grade point breakdown & visual performance analytics",
+        "Clean, intuitive mobile user experience built for university students"
+      ],
+      techStack: ["React Native", "Expo", "TypeScript", "JavaScript", "Tailwind CSS", "Local Storage"],
+      images: [
+        "/resources/Project Images/gradeFlow/1.png",
+        "/resources/Project Images/gradeFlow/2.png",
+        "/resources/Project Images/gradeFlow/3.png",
+        "/resources/Project Images/gradeFlow/4.png",
+        "/resources/Project Images/gradeFlow/5.png",
+        "/resources/Project Images/gradeFlow/6.png",
+        "/resources/Project Images/gradeFlow/7.png",
+        "/resources/Project Images/gradeFlow/8.png",
+        "/resources/Project Images/gradeFlow/9.png",
+      ],
+      jsonPayload: {
+        app_id: "gradeflow_mobile_v1",
+        target_audience: "University & Higher Education Students",
+        gpa_engine: {
+          scale: "4.0 Weighted Grading Scale",
+          calculation_status: "AUTOMATED_REAL_TIME",
+          metrics_supported: ["SGPA", "CGPA", "Credit Point Breakdown"]
+        },
+        schedule_sync: {
+          timetable_management: "ACTIVE",
+          exam_schedule_tracking: "AUTOMATED"
+        }
+      }
     }
   ];
 

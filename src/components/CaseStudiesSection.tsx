@@ -266,22 +266,22 @@ export function CaseStudiesSection() {
     {
       id: "gradeflow",
       title: "GradeFlow",
-      subtitle: "University Results, Timetable & GPA Management Mobile App",
+      subtitle: "University Exam Timetables, Result Tracking & GPA Management Mobile App",
       category: "EdTech & Student Productivity Mobile App",
-      badge: "GPA & Timetable Engine",
+      badge: "GPA & Exam Timetable Engine",
+      status: "Currently under development",
       metrics: [
         { label: "Platform", value: "iOS & Android" },
-        { label: "Timetable Sync", value: "Class & Exams" },
+        { label: "Timetables", value: "Exam Schedules" },
         { label: "GPA Engine", value: "Real-Time Auto" },
         { label: "Result Vis", value: "Grade Breakdown" },
       ],
-      problem: "University students often struggle to maintain organized class timetables, stay updated on exam schedules, and accurately calculate their semester and cumulative GPAs when exam marks are released.",
-      architecture: "Cross-platform mobile application architecture built with React Native and Expo. Integrates an automated GPA calculation engine based on credit weighting algorithms, automated schedule mapping, and secure local data persistence.",
-      solution: "Developed GradeFlow, a feature-rich mobile app tailored for university students to effortlessly manage class timetables, automate exam schedule tracking, log released subject marks, and instantly calculate clear GPA and CGPA metrics.",
+      problem: "University students often struggle to keep track of upcoming exam timetables, organize released subject results, and accurately calculate their semester and cumulative GPAs across academic terms.",
+      architecture: "Cross-platform mobile application architecture built with React Native and Expo. Integrates an automated GPA calculation engine based on credit weighting algorithms, exam timetable tracking, and secure local data persistence.",
+      solution: "Developed GradeFlow, a feature-rich mobile app tailored for university students to effortlessly manage exam timetables, track released subject results, log grade marks, and instantly calculate clear SGPA & CGPA metrics.",
       keyFeatures: [
-        "Class timetable & weekly schedule management",
-        "Automated exam schedule tracking & countdowns",
-        "Subject marks logging after result releases",
+        "Automated exam timetable tracking & countdowns",
+        "Released subject result tracking & mark logging",
         "Instant automated SGPA & CGPA calculation engine",
         "Clear subject-wise grade point breakdown & visual performance analytics",
         "Clean, intuitive mobile user experience built for university students"
@@ -307,8 +307,8 @@ export function CaseStudiesSection() {
           metrics_supported: ["SGPA", "CGPA", "Credit Point Breakdown"]
         },
         schedule_sync: {
-          timetable_management: "ACTIVE",
-          exam_schedule_tracking: "AUTOMATED"
+          exam_timetable_management: "ACTIVE",
+          result_tracking: "AUTOMATED"
         }
       }
     }

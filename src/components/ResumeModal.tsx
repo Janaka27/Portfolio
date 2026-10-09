@@ -151,12 +151,24 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 <p className="text-neutral-600 dark:text-neutral-300 text-[11px]">University-focused peer-to-peer marketplace designed specifically for Sri Lankan university students.</p>
               </div>
               <div className="bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
-                <strong className="text-neutral-900 dark:text-white block mb-1">3. Cardly</strong>
+                <div className="flex items-center justify-between mb-1">
+                  <strong className="text-neutral-900 dark:text-white">3. Cardly</strong>
+                  <span className="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-500/15 px-2 py-0.5 rounded-full border border-amber-500/20 dark:border-amber-500/30 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                    Under Dev
+                  </span>
+                </div>
                 <p className="text-neutral-600 dark:text-neutral-300 text-[11px]">Credit Card Management Mobile App built with React Native & RESTful backend.</p>
               </div>
               <div className="bg-neutral-50 dark:bg-neutral-800/60 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-700/80">
-                <strong className="text-neutral-900 dark:text-white block mb-1">4. GradeFlow</strong>
-                <p className="text-neutral-600 dark:text-neutral-300 text-[11px]">University Student Results, Timetable & Automated GPA Management Mobile App.</p>
+                <div className="flex items-center justify-between mb-1">
+                  <strong className="text-neutral-900 dark:text-white">4. GradeFlow</strong>
+                  <span className="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-500/15 px-2 py-0.5 rounded-full border border-amber-500/20 dark:border-amber-500/30 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                    Under Dev
+                  </span>
+                </div>
+                <p className="text-neutral-600 dark:text-neutral-300 text-[11px]">University Student Exam Timetables, Result Tracking & Automated GPA Management Mobile App.</p>
               </div>
             </div>
           </div>
